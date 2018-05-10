@@ -8,7 +8,7 @@ $user.good = 0;
 var NowAct = 1;
 
 function next_act() {
-  $("#step" + NowAct).fadeOut(1000, function(){
+  $("#step" + NowAct).slideUp(1000, function(){
     $("#step" + (NowAct+1)).fadeIn();
   })
 }
@@ -26,7 +26,7 @@ $("#step2 a.choice").click(function(e) {
   e.stopPropagation()
   if ($(this).data("ans")) {
     $("#step2 div.text").fadeOut();
-    $("#step2 div.result").slideDown();
+    $("#step2 div.result").fadeIn();
   } else {
     next_act();
     NowAct = 3;

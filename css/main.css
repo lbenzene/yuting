@@ -100,6 +100,7 @@ textarea {
 body, html {
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 .row,
@@ -121,19 +122,33 @@ footer {
 div.section {
   display: block;
   margin: 0;
-  padding-top: 3em;
-  padding-left: 2em;
-  padding-right: 2em;
   box-sizing: border-box;
   clear: both;
-  min-height: 100%;
-  min-width: 100%;
-  background-color: #EBEBEB;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
 
-div.text {
+div.section > img.bgimg {
+  display: block;
+  position: absolute;
+  vertical-align: middle;
+  z-index: -1;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  background-color: #999999;
+  overflow: hidden;
+}
+
+div.text,
+div.result {
   display: block;
   clear: both;
+  padding: 2em 1em;
+  background-color: rgba(255,255,255, 0.5);
+  box-shadow: 0 0 2em 1em rgba(255,255,255, 0.5);
 }
 
 div.section div.text > p,
@@ -142,55 +157,80 @@ div.section > p {
   margin-bottom: 1em;
 }
 
-form#info > input[type="text"] {
-  display: block;
+div#step1 > .text {
   position: relative;
-  margin-left: 0;
-  margin-right: 0;
-  height: 2em;
+  top: 60%;
+}
+
+div#step2 > .text,
+div#step2 > .result {
+  position: relative;
+  top: 40%;
+}
+
+form#info {
+  position: absolute;
+  top: 0;
   width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+form#info > img {
+  position: absolute;
+  width: 120%;
+  left: -10%;
+}
+
+form#info > div.container {
+  position: absolute;
+  top: 20%;
+  right: 10%;  
+}
+
+form#info input[type="text"] {
+  display: block;
+  height: 2em;
+  width: 5em;
   padding: 0.5em 1em;
-  background-color: #FFFFFF;
+  background-color: rgba(255,255,255, 0.1);
   box-sizing: border-box;
   border: 1px solid #BDBDBD;
   outline: none;
-  -webkit-box-shadow: inset 0 0 1px rgba(0,0,0,0.075);
-     -moz-box-shadow: inset 0 0 1px rgba(0,0,0,0.075);
-          box-shadow: inset 0 0 1px rgba(0,0,0,0.075);
-  -webkit-transition: all linear 0.2s;
-     -moz-transition: all linear 0.2s;
-       -o-transition: all linear 0.2s;
-          transition: all linear 0.2s;
   font-size: 1em;
-  color: #333333;
+  color: #141414;
   line-height: 1em;
   vertical-align: middle;
 }
 
-form#info > input[type="text"]:focus {
+form#info input[type="text"]:focus {
   border: 1px solid #999999;
   -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
      -moz-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
           box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
 }
 
-form#info > input[type="text"]:-moz-placeholder {
-  color: #666666;
+form#info input[type="text"]:-moz-placeholder {
+  color: #333333;
 }
 
-form#info > input[type="text"]::-moz-placeholder {
-  color: #666666;
+form#info input[type="text"]::-moz-placeholder {
+  color: #333333;
   opacity: 1;
 }
 
-form#info > input[type="text"]:-ms-input-placeholder {
-  color: #666666;
+form#info input[type="text"]:-ms-input-placeholder {
+  color: #333333;
 }
 
-form#info > input[type="text"]::-webkit-input-placeholder {
-  color: #666666;
+form#info input[type="text"]::-webkit-input-placeholder {
+  color: #333333;
 }
 
+
+div#step2 {
+  /*background-color: #EBEBEB;*/
+}
 
 div.section a.btn {
   position: relative;
