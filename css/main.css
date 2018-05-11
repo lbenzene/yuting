@@ -100,6 +100,7 @@ textarea {
 body, html {
   height: 100%;
   width: 100%;
+  overflow: hidden;
 }
 
 .row,
@@ -130,6 +131,7 @@ div#main-warpper {
   opacity: 1;
   /*transition:all .5s ease-in-out;*/
   z-index: 10;
+  overflow: visible;
 }
 
 div.section {
@@ -177,8 +179,8 @@ div.result {
   display: block;
   clear: both;
   padding: 2em 1em;
-  background-color: rgba(255,255,255, 0.5);
-  box-shadow: 0 0 2em 1em rgba(255,255,255, 0.5);
+  background-color: rgba(255,255,255, 0.7);
+  box-shadow: 0 0 2em 1em rgba(255,255,255, 0.7);
 }
 
 div.section div.text > p,
@@ -290,21 +292,36 @@ div.choice {
   text-align: center;
 }
 
-div.choice > a.choice {
+div.choice > p {
   display: block;
+  margin: 0 0 0.5em 0;
+  height: 2em;
+}
+
+div.choice a.choice {
   position: relative;
   left: auto;
   right: auto;
   box-sizing: border-box;
-  padding: 0.5em;
-  margin: 0.5em 0;
+  padding: 0.5em 1em;
   border-radius: 0.5em;
 
-  background-color: #BBBBBB;
+  background-color: rgba(144,144,144, 0.7);
 }
 
-div.choice > a.choice:active,
-div.choice > a.choice:hover {
+div.choice > a.choice {
+  display: block;
+  width: 100%;
+  margin-bottom: 0.5em;
+}
+
+div.choice > p > a.choice {
+  display: inline;
+
+}
+
+div.choice a.choice:active,
+div.choice a.choice:hover {
   background-color: #333333;
   color: #EBEBEB;
 }
@@ -322,20 +339,6 @@ div.choice > a.choice:hover {
 .center {
   text-align: center !important;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* ==========================================================================

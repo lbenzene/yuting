@@ -7,8 +7,6 @@ $user.good = 0;
 
 var NowAct = 1;
 
-
-
 $("#step1 a.btn").click(function(e){
   e.stopPropagation();
   $user.name = $("input[name='name']").val();
@@ -20,16 +18,16 @@ $("#step1 a.btn").click(function(e){
 $("#step2 a.choice").click(function(e) {
   e.stopPropagation()
   if ($(this).data("ans")) {
+    next_act(3);
+  } else {
     $("#step2 div.text").fadeOut(function(){
       $("#step2 div.result").fadeIn();
 
       $("#step2 div.result a.btn").click(function(e){
         e.stopPropagation();
         next_act(3);
-      })
+      });
     })
-  } else {
-    next_act(3);
   }
 })
 
