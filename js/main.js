@@ -31,6 +31,11 @@ $("#step2 a.choice").click(function(e) {
   }
 })
 
+$("#step3 a.btn").click(function(e){
+  e.stopPropagation();
+  next_act(4);
+})
+
 function next_act(n) {
   NowAct = n;
   $("#main-warpper").animate({top:'-' + (n-1) + '00%'}, "slow");

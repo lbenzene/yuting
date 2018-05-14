@@ -288,6 +288,12 @@ div.section a.btn {
   overflow: hidden;
 }
 
+div.section a.btn:hover {
+  border-bottom: 0.2em solid #141414;
+  background-color: #555555;
+  color: #EBEBEB;
+}
+
 div.choice {
   text-align: center;
 }
