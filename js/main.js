@@ -8,12 +8,6 @@ $user.tutor = 0;  // 0陈 1严
 
 var NowAct = 1;
 
-
-$("#main-warpper").on('touchmove', function(e){
-  e.stopPropagation();
-  e.preventDefault();
-})
-
 $(document).ready(function(){
   // 定义所有下一页标签
   $("a.next").click(function(){
