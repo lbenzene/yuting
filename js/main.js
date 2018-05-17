@@ -8,11 +8,17 @@ $user.tutor = 0;  // 0陈 1严
 
 var NowAct = 1;
 
+
+$(document).on('touchmove', function(e){
+  e.preventDefault();
+})
+
 $(document).ready(function(){
   // 定义所有下一页标签
   $("a.next").click(function(){
     next_act($(this).data("next"));
   })
+
 
   // 设置所有选项动作
   // $("a.choice").click(function(){
