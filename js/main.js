@@ -9,7 +9,8 @@ $user.tutor = 0;  // 0陈 1严
 var NowAct = 1;
 
 
-$(document).on('touchmove', function(e){
+$("#main-warpper").on('touchmove', function(e){
+  e.stopPropagation();
   e.preventDefault();
 })
 
