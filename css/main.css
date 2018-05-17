@@ -161,6 +161,14 @@ div.section {
   top: 300%;
 }
 
+#step5 {
+  top: 400%;
+}
+
+#step6 {
+  top: 500%;
+}
+
 div.section > img.bgimg {
   display: block;
   position: absolute;
@@ -186,7 +194,7 @@ div.result {
 div.section div.text > p,
 div.section > p {
   margin: 0;
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
 }
 
 div#step1 > .text {
@@ -300,8 +308,8 @@ div.choice {
 
 div.choice > p {
   display: block;
-  margin: 0 0 0.5em 0;
-  height: 2em;
+  margin: 0 0 0.3em 0;
+  line-height: 1.5em;
 }
 
 div.choice a.choice {
@@ -311,7 +319,7 @@ div.choice a.choice {
   box-sizing: border-box;
   padding: 0.5em 1em;
   border-radius: 0.5em;
-
+  transition: all linear 0.2s;
   background-color: rgba(144,144,144, 0.7);
 }
 
@@ -323,11 +331,10 @@ div.choice > a.choice {
 
 div.choice > p > a.choice {
   display: inline;
-
 }
 
-div.choice a.choice:active,
-div.choice a.choice:hover {
+div.choice a.choice:hover,
+div.choice a.choice:active {
   background-color: #333333;
   color: #EBEBEB;
 }
