@@ -186,13 +186,21 @@ div.text,
 div.result {
   display: block;
   clear: both;
-  padding: 2em 1em;
-  background-color: rgba(255,255,255, 0.7);
-  box-shadow: 0 0 2em 1em rgba(255,255,255, 0.7);
+  padding: 1em 1em;
+  margin: 0 0.5em;
+  color: #EBEBEB;
+  z-index: 1;
+  background-color: rgba(0,0,0, 0.7);
+  border: 2px solid #EBEBEB;
+  box-shadow: 0 0 5px rgba(0,0,0, 0.7);
+  box-sizing: border-box;
+  height: 35%;
+  overflow-y: scroll;
 }
 
 div.section div.text > p,
 div.section > p {
+  display: none;
   margin: 0;
   margin-bottom: 0.5em;
 }
@@ -205,7 +213,7 @@ div#step1 > .text {
 div#step2 > .text,
 div#step2 > .result {
   position: relative;
-  top: 40%;
+  top: 60%;
 }
 
 form#info {
@@ -303,7 +311,8 @@ div.section a.btn:hover {
 }
 
 div.choice {
-  text-align: center;
+  margin-top: 0.5em;
+  text-align: left;
 }
 
 div.choice > p {
@@ -317,7 +326,7 @@ div.choice a.choice {
   left: auto;
   right: auto;
   box-sizing: border-box;
-  padding: 0.5em 1em;
+  padding: 0.2em 1em;
   border-radius: 0.5em;
   transition: all linear 0.2s;
   background-color: rgba(144,144,144, 0.7);
