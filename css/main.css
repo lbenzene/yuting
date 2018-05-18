@@ -333,8 +333,7 @@ div.choice > p > a.choice {
   display: inline;
 }
 
-div.choice a.choice:hover,
-div.choice a.choice:active {
+div.choice a.choice.active {
   background-color: #333333;
   color: #EBEBEB;
 }
