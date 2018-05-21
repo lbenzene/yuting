@@ -102,6 +102,7 @@ body, html {
   width: 100%;
   overflow: hidden;
   font-family: 楷体;
+  background-color: #141414;
 }
 
 .row,
@@ -136,7 +137,7 @@ div#main-warpper {
 }
 
 div.section {
-  display: block;
+  display: none;
   position: absolute;
   margin: 0;
   box-sizing: border-box;
@@ -146,6 +147,16 @@ div.section {
   overflow: hidden;
 }
 
+div.next {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+
+#step1 {
+  display: block;
+}
+/* 
 #step1 {
   top: 0%;
 }
@@ -170,6 +181,10 @@ div.section {
   top: 500%;
 }
 
+#step7 {
+  top: 600%;
+}
+ */
 div.section > img.bgimg {
   display: block;
   position: absolute;
@@ -183,17 +198,35 @@ div.section > img.bgimg {
   overflow: hidden;
 }
 
-div.text,
-div.result {
+div.text {
+  position: relative;
   display: block;
   clear: both;
+  top: 10%;
   padding: 1em 0;
 /*  background-color: rgba(255,255,255, 0.7);
   box-shadow: 0 0 2em 1em rgba(255,255,255, 0.7);
 */}
 
+div.result {
+  display: none;
+  height: 100%;
+  box-sizing: border-box;
+  padding: 20% 2em;
+}
+
+a.next {
+  display: block;
+  position: fixed !important;
+  bottom: 10%;
+  left: 0;
+  padding: 1em 3em !important;
+  box-sizing: border-box;
+}
+
 div.section div.result > p,
 div.section div.text > p,
+div.section div.next > p,
 div.section > p {
   font-family: 楷体;
   color: #EBEBEB;
