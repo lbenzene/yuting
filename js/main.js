@@ -15,6 +15,10 @@ $(document).ready(function(){
     next_act($(this).data("next"));
   })
 
+  $(".section").click(function(){
+    $(this).find("div.choice").fadeIn();
+  })
+
 
   // 设置所有选项动作
   // $("a.choice").click(function(){
@@ -54,7 +58,9 @@ $("#step2 a.choice").click(function(e) {
 $("#step3 a.choice").click(function(e){
   e.stopPropagation();
   $user.tutor = $(this).data("ans");
-  $("#step3 div.result").fadeIn();
+  $("#step3 div.text").fadeOut(function(){
+    $("#step3 div.result").fadeIn();
+  })
 })
 
 $("#step5 a.choice").click(function(e){
