@@ -27,21 +27,23 @@
     <img src="img/page1.jpg" class="bgimg">
     <div class="text">
         <p>1937年8月，淞沪大战失利，中国前途危亡。家国飘摇之中，你迎来了18岁生日和一张来自<em>浙江大学</em>的录取通知书。</p>
-        <p>选择你的性别、名字、文/理。</p>
     </div>
-    <form id="info" style="display: none;">
-        <!-- <img src="img/page1-1.png" class="timg"> -->
-        <div class="container">
-            <p>位置以后再改</p>
-            <input type="text" name="name" placeholder="名字">
-            <input type="radio" name="major" value="文" checked><label>文</label>
-            <input type="radio" name="major" value="理"><label>理</label>
-            <br>
-            <input type="radio" name="gender" value="M" checked><label>男</label>
-            <input type="radio" name="gender" value="F"><label>女</label>
-            <a class="btn next" data-next="2">确定</a>
-        </div>
-    </form>
+    <div class="choice">    
+        <form id="info">
+            <!-- <img src="img/page1-1.png" class="timg"> -->
+            <div class="container">
+                <p>选择你的性别、名字、文/理。</p>
+                <input type="text" name="name" placeholder="名字">
+                <input type="radio" name="major" value="文" checked><label>文</label>
+                <input type="radio" name="major" value="理"><label>理</label>
+                <br>
+                <input type="radio" name="gender" value="M" checked><label>男</label>
+                <input type="radio" name="gender" value="F"><label>女</label>
+                <a class="btn next" data-next="2">确定</a>
+            </div>
+        </form>
+    </div>
+
 </div>
 
 <div class="section" id="step2">
@@ -49,11 +51,12 @@
     <div class="text">
         <p>九月十八日，晨微雨，满觉陇桂花盛开。</p>
         <p>这是开学第二日，全校师生在细雨中召开了勿忘国耻六周年纪念大会。</p>
-        <div class="choice" data-choice="1">
-            <p>竺可桢校长在会上宣布，一年级新生要在一周后集体迁往天目山上的禅源寺，你心想：</p>
-            <a class="choice" data-ans="0">A.禅源寺地处深山，<del>无线局域网信号不好</del>，没法和家人联络，我不想去</a>
-            <a class="choice" data-ans="1">B.听说山里有猫，去撸撸看。</a>
-        </div>
+
+    </div>
+    <div class="choice" data-choice="1">
+        <p>竺可桢校长在会上宣布，一年级新生要在一周后集体迁往天目山上的禅源寺，你心想：</p>
+        <a class="choice" data-ans="0">A.禅源寺地处深山，<del>无线局域网信号不好</del>，没法和家人联络，我不想去</a>
+        <a class="choice" data-ans="1">B.听说山里有猫，去撸撸看。</a>
     </div>
     <div class="result" style="display: none;">
         <p>你的父亲寄来家书，斥你是小孩子心态，让你安心上学，不要担心家里的事。</p>
@@ -66,16 +69,15 @@
     <img src="img/page2_2.jpg" class="bgimg">
     <div class="text">
         <p>天目山上的求学时光苦涩、平静而悠长，每日有潺潺水声和僧人诵经声相伴，倒也有味。</p>
-        <p>只是军训时剃的光头还没长出头发来，让你颇有苦恼。</p>
-        <div class="choice" data-choice="2">
-            <p>这时，恰逢学校开始推行导师制度，你心中有了两个合适的人选：</p>
-            <a class="choice" data-ans="0">年轻有为、<del>外表好看</del>的陈教授</a>
-            <a class="choice" data-ans="1">德高望重、<del>灵魂有趣</del>的严教授</a>
-        </div>
+    </div>
+    <div class="choice" data-choice="2">
+        <p>这时，恰逢学校开始推行导师制度，你心中有了两个合适的人选：</p>
+        <a class="choice" data-ans="陈">年轻有为、<del>外表好看</del>的陈教授</a>
+        <a class="choice" data-ans="严">德高望重、<del>灵魂有趣</del>的严教授</a>
     </div>
     <div class="result" style="display: none;">
         <p>零零碎碎的战败消息传来，你的心时时为山外的家人所牵动。</p>
-        <p>严／陈教授看你小小年纪心事重重，时常找你聊天，为你开导。在他的帮助下，你不仅在学业上面进步许多，心志也如山间的竹子一般拔节成长。</p>
+        <p><span>严</span>教授看你小小年纪心事重重，时常找你聊天，为你开导。在他的帮助下，你不仅在学业上面进步许多，心志也如山间的竹子一般拔节成长。</p>
         <a class="btn next" data-next="4">继续</a>
     </div>
 </div>
@@ -84,6 +86,8 @@
     <img src="img/page3.jpg" class="bgimg">
     <div class="text">
         <p>11月下旬，浙西告急，仓促间你竟忘了和常喂的求是猫告别，就随着大部队历经五天奔波，迁到了建德。</p>
+    </div>
+    <div class="text">        
         <p>学校的教室、宿舍分散在建德城内各处，课余饭后，街巷拥挤，每天中午吃饭都像“打仗”似的。你最怕碰到当天的《浙大日报》开售的时候，报童的第一声叫卖声还没喊完，人们就一哄而上争相购买传阅，街上人头攒动，饭都吃不安生。</p>
         <a class="btn next" data-next="5">继续</a>
     </div>
@@ -93,12 +97,14 @@
     <div class="text">
         <p>12月24日，杭州沦陷。</p>
         <p>好在竺校长早有下一步迁校打算，计划在寒假前撤离建德，迁往江西吉安。</p>
+    </div>
+    <div class="text" style="display: none;">
         <p>这次的搬迁不像离杭时那般匆促忙乱，你和同学们被分成小队，由导师和教官率领，有条不紊地前往各地接待站。</p>
-        <div class="choice" data-choice="3">
-            <p>到达兰溪后，你遇到了逃难途中的家人。</p>
-            <a class="choice" data-ans="0">许久不见，跟家人们一起换乘小船前往金华。</a>
-            <a class="choice" data-ans="1">和家人匆匆道别，跟随学校队伍一起步行前往金华。</a>
-        </div>
+    </div>
+    <div class="choice" data-choice="3">
+        <p>到达兰溪后，你遇到了逃难途中的家人。</p>
+        <a class="choice" data-ans="0">许久不见，跟家人们一起换乘小船前往金华。</a>
+        <a class="choice" data-ans="1">和家人匆匆道别，跟随学校队伍一起步行前往金华。</a>
     </div>
     <div class="result" style="display: none;">
         <p>次日，金华遭到三架重型轰炸机狂炸，你在街上避难之时受了轻伤。</p>
@@ -109,13 +115,13 @@
 <div class="section" id="step6">
     <div class="text">
         <p>因军运关系，浙赣铁路客货车停运，学校原本的迁移计划也不得不搁置，你和同学们窝在一所小学校里等待下一步的安排。</p>
+    </div>
+    <div class="choice" data-choice="4">
         <p>12月底的南方小城，夜里潮湿寒冷，你们瑟缩一团，冻坐终夜难以入睡。</p>
-        <div class="choice" data-choice="4">
-            <p>这时，家人送来了过冬的衣物：</p>
-            <p><b>（慎重，你的选择将影响人生轨迹）</b></p>
-            <a class="choice" data-ans="0">寒冷让你难以顾及太多，立刻穿上了厚厚的冬衣。</a>
-            <a class="choice" data-ans="1">你看着边上瑟瑟发抖的紫云同学，暗想：哥没有胸肌给你靠，好歹有件外套。</a>
-        </div>
+        <p>这时，家人送来了过冬的衣物：</p>
+        <p><b>（慎重，你的选择将影响人生轨迹）</b></p>
+        <a class="choice" data-ans="0">寒冷让你难以顾及太多，立刻穿上了厚厚的冬衣。</a>
+        <a class="choice" data-ans="1">你看着边上瑟瑟发抖的紫云同学，暗想：哥没有胸肌给你靠，好歹有件外套。</a>
     </div>
     <div class="result" style="display: none;">
         <p>在金华苦等两天后，你们终于等来了一辆敞篷的铁皮货车。</p>
@@ -127,10 +133,12 @@
     <div class="text">
         <p>几经周折，终抵玉山。这一路疲乏困顿之中，竟已是1938年。</p>
         <p>见到一片草地，你就地卧倒沉沉睡去，被路过的竺校长看到，又是心疼又是好笑。</p>
+    </div>
+    <div class="text">
         <p>本以为很快就能跟随大部队前往吉安，然战时风云难测，西迁的“大军”再次“搁浅”。</p>
         <p>1月7号，竺校长终于带来了前往下一站的火车。</p>
-
     </div>
+
     <div class="result">
         <a class="btn next" data-next="8">继续</a>
     </div>
@@ -139,12 +147,11 @@
 <div class="section" id="step8">
     <div class="text">
         <p>磕磕绊绊，走走停停，西迁的队伍终于到了江西吉安。</p>
-        <div class="choice" data-choice="5">
-            <p>趁着吉安中学放寒假，学校坚持开课两周，并进行期末考试。这一路上困难重重，你的功课也耽误了不少，你决定：</p>
-            <a class="choice" data-ans="0">A 熬夜学习</a>
-            <a class="choice" data-ans="1">B 你的身体快熬不住了，想着“人有多大胆，复习拖多晚”沉沉睡去</a>
-        </div>
-
+    </div>
+    <div class="choice" data-choice="6">
+        <p>趁着吉安中学放寒假，学校坚持开课两周，并进行期末考试。这一路上困难重重，你的功课也耽误了不少，你决定：</p>
+        <a class="choice" data-ans="0">A 熬夜学习</a>
+        <a class="choice" data-ans="1">B 你的身体快熬不住了，想着“人有多大胆，复习拖多晚”沉沉睡去</a>
     </div>
     <div class="result">
         <a class="btn next" data-next="9">继续</a>
@@ -155,6 +162,8 @@
     <div class="text">
         <p>2月15日，晨阴湿，晚又雨。</p>
         <p>你们告别了美丽的白鹭洲小岛，启赴泰和上田村。听说这儿的书院和藏书楼久富盛名，历代都有许多学子远道负笈而来。</p>
+    </div>
+    <div class="text">
         <p>春意渐浓，你也抖擞精神开始了新一年的学习。</p>
     </div>
     <div class="result">
