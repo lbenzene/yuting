@@ -315,6 +315,10 @@ $("#step15 a.choice").click(function(e){
   })
 })
 
+$("#step16").click(function() {
+  oridinary($(this));
+})
+
 $("#step16 a.choice").click(function(e){
   e.stopPropagation();
   var DIV = $("#step16 div.result");
