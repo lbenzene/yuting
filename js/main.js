@@ -6,6 +6,7 @@ $user.gender = "M"; // 0男 1女
 $user.hp = 10;    // 生命值
 $user.good = 0;   // 
 $user.tutor = "";
+$user.fri = ""
 
 var NowAct = 1;
 var role4 = 0;
@@ -139,7 +140,7 @@ $("#step6 a.choice").click(function(e){
   e.stopPropagation();
   var DIV = $("#step6 div.result");
   var text = "";
-  if ($(this).data("ans")) {
+  if ($(this).data("ans") == "0") {
     text = "家人送来的温暖让你得以在这个苦寒的夜晚有了片刻安睡。"
   } else {
     text = "你不由分说为紫云同学披上了冬衣。<br>一夜苦寒，第二天清早你便发起了高烧。"
@@ -166,8 +167,8 @@ $("#step7").click(function() {
       temp += "风从一个个弹孔中钻进脖子，你们冷的直打哆嗦，又怕染上风寒，不敢睡觉，只能一路高唱《松花江上》给自己鼓劲儿。</p>";
     } else if ($user.gender == "F") {
       temp = "<p>男生们展现绅士风度，主动把客车车厢让给了教授和女孩子们，一股脑挤进了敞篷铁皮车里，你得以在客车厢里睡了安稳的一觉。</p>";
-      temp += "<p>第二天，看到许多男生的棉衣都破破烂烂地露出棉絮，你好奇地问他们怎么搞的，男孩子们不好意思地告诉你，货车的车皮恐怕都被子弹打过，到处是枪眼，一不小心衣服就被刮破了。"
-      temp += "你听了心里极不是滋味，好在离家前跟母亲学过点女红，可以帮他们补补衣裳。</p>";
+      temp += "<p>第二天，看到许多男生的棉衣都破破烂烂地露出棉絮，你好奇地问他们怎么搞的，男孩子们不好意思地告诉你，货车的车皮恐怕都被子弹打过，到处是枪眼，一不小心衣服就被刮破了。</p>"
+      temp += "<p>你听了心里极不是滋味，好在离家前跟母亲学过点女红，可以帮他们补补衣裳。</p>";
     }
     $this.find("div.text:eq(" + role7++ + ")").fadeOut(function() {
       $("#step7 div.result").prepend(temp).fadeIn();
@@ -179,7 +180,7 @@ $("#step8 a.choice").click(function(e){
   e.stopPropagation();
   var DIV = $("#step8 div.result");
   var text = "";
-  if ($(this).data("ans")) {
+  if ($(this).data("ans") == "0") {
     text = "在自修室里，你遇到了";
     if ($user.gender == "M") {
       text += "紫云";
@@ -197,6 +198,7 @@ $("#step8 a.choice").click(function(e){
 })
 
 $("#step9").click(function() {
+  $(this).unbind();
   var temp = "";
   if ($user.major == "理") {
     temp = "<p>雨终日不止，山花谢了又开，每日卯时即起，晨曦中埋头苦读，做实验，刷试管；"
@@ -206,10 +208,130 @@ $("#step9").click(function() {
     temp += "<p>黄昏时分，你时常呆在竺校长新栽的常青柏边，思考先生讲过的抗战与士风。</p>"
     temp += "<p>小树摇摇曳曳，世界静默的好像一个漫长的镜头。</p>";
   }
+  $("#step9 div.result").prepend(temp);
   $(this).find("div.text").fadeOut(function() {
-    $("#step9 div.result").prepend(temp).fadeIn();
+    $("#step9 div.result").fadeIn();
   })
 })
+
+$("#step11").click(function() {
+  oridinary($(this));
+})
+
+$("#step11 a.choice").click(function(e){
+  e.stopPropagation();
+  var DIV = $("#step11 div.result");
+  var text = "";
+  if ($(this).data("ans") == "0") {
+    text = "你接受了这份工作，每日“上课下班”，往返于乡间小道。"
+  } else {
+    text = "你的生活越发拮据。为了节省开销，你时常不吃早饭便去上晨课。"
+  }
+  DIV.prepend("<p>" + text + "</p>");
+  $("#step11 div.choice").fadeOut(function(){
+    DIV.fadeIn();
+  })
+})
+
+$("#step12").click(function() {
+  oridinary($(this));
+})
+
+$("#step12 a.choice").click(function(e){
+  e.stopPropagation();
+  var DIV = $("#step12 div.result");
+  var text = "";
+  var temp = ""
+  if ($(this).data("ans") == "0") {
+    text += "<p>赣江边上，蓝田正在唐凤图教授的指导下勘测水位。</p>"
+    text += "<p>你怕打扰他工作，在一旁默默地吃完了老乡送给他的杨梅。</p>";
+    temp += "<p>看完蓝田回来不久，赣江边上多了一道十五里长堤。上田村人民十分感激，将其命名为“浙大防洪堤”。</p>"
+  } else {
+    text += "<p>跋涉大半天，你才到了碧峰所在的沙村镇。正好看到碧峰在田里带着难民们干活。</p>"
+    text += "<p>犹记得去年新生报道时，同学们大都灰头土脸，唯有碧峰衬衣雪白挺括。看他这会儿面如闰土，你噗嗤一声笑了出来。</p>"
+    temp += "<p>看完碧峰回来，几个月后，沙村示范垦殖场建成了，难民得有所依。回到学校里的碧峰，皮肤已经晒得黝黑发亮，你们时常打趣他，哪还有当年富家少爷样子。</p>"
+  }
+  DIV.prepend(text);
+  $("#step12 div.choice").fadeOut(function(){
+    DIV.fadeIn();
+  })
+  temp += '<a class="btn next" data-next="13">继续</a>';
+  DIV.click(function() {
+    DIV.unbind()
+    DIV.html(temp);
+    $("#step12 a.next").click(function(){next_act($(this).data("next"));})
+  })
+})
+
+$("#step13").click(function() {
+  $this = $(this);
+  $this.unbind();
+  $this.find("div.text").fadeOut(function(){
+    $this.find("div.choice").fadeIn();
+  })
+  text = ""
+  if ($user.gender == "M") {
+    text += "<p>你自幼在水边长大，水性极好，每次上游泳课都成了你“大展身手”的机会。江边搭了两个台子供同学们跳水，你选择登上：</p>"
+    text += '<a class="choice" data-ans="0">1米台</a>'
+    text += '<a class="choice" data-ans="1">2米台</a>'
+  } else if ($user.gender == "F") {
+    text += "<p>你自幼怕水，每次上游泳课总是找理由待在岸上。体育老师没说什么，只是默默地将签到台挪到了泳池中心。</p>"
+    text += "<p>你白眼升天，只能硬着头皮下水。没想到，20次“水中签到”之后，你竟然学会游泳了！</p>"
+    text += '<a class="btn next" data-next="14">继续</a>'
+  }
+  $(this).children("div.choice").html(text);
+  $("#step13 a.choice").click(function(e){
+    var DIV = $("#step13 div.result");
+    var text = "";
+    if ($(this).data("ans") == "0") {
+      text += "<p>“扑通”一声，一个漂亮的入水，同学们纷纷为你喝起彩来。</p>"
+    } else {
+      text += "<p>“扑通”一声，一个漂亮的入水，同学们纷纷为你喝起彩来。</p>"
+    }
+    DIV.prepend(text);
+    $("#step13 div.choice").fadeOut(function(){
+      DIV.fadeIn();
+    })
+  })
+  $("#step13 a.next").click(function(){next_act($(this).data("next"));})
+})
+
+$("#step15").click(function() {
+  oridinary($(this));
+})
+
+$("#step15 a.choice").click(function(e){
+  e.stopPropagation();
+  var DIV = $("#step15 div.result");
+  var text = "";
+  if ($(this).data("ans") == "0") {
+    text = "<p>带着竺校长赠予的一张地图、一副指南针，你们用双脚丈量着泰和到宜山一千多里的路途。</p>"
+  } else {
+    text = "<p>四十多天、一千多里的行程中，你们抓住一切机会登台亮相，用一首首抗日歌曲，一场场抗日剧目，发出你们青年的“呐喊”。</p>"
+  }
+  DIV.prepend(text);
+  $("#step15 div.choice").fadeOut(function(){
+    DIV.fadeIn();
+  })
+})
+
+$("#step16 a.choice").click(function(e){
+  e.stopPropagation();
+  var DIV = $("#step16 div.result");
+  var text = "";
+  if ($(this).data("ans") == "0") {
+    text += "<p>“真是天妒英才，我怕命不久矣，还是把它给" + $user.fri + "吧”</p>"
+    text += "<p>" + $user.fri + "不肯收下你的钢笔，让你不要乱想，说着说着声音却哽咽了起来。</p>"
+    text += "<p>接下来的几天，你的意识开始模糊。绝望之时，终于传来了好消息：竺校长的人从广东带药回来了！</p>"
+  } else {
+    text += "<p>四十多接下来的几天，你的意识开始模糊。绝望之时，终于传来了好消息：竺校长的人从广东带药回来了！</p>"
+  }
+  DIV.prepend(text);
+  $("#step16 div.choice").fadeOut(function(){
+    DIV.fadeIn();
+  })
+})
+
 
 function next_act(n) {
   n;
@@ -224,7 +346,8 @@ function next_act(n) {
 
 function change1() {
   if ($user.gender == "F") {  
-    text = "<p>一起入学的男生军训时统统剃了光头，你常笑他们是寺里的“小和尚”。</p>"
+    $user.fri = "丹阳"
+    text3 = "<p>一起入学的男生军训时统统剃了光头，你常笑他们是寺里的“小和尚”。</p>"
 
     $("#step6 div.text p").text("在体育系主任舒鸿先生的带领下，你和一小部分同学溯水路到了常山。因为租不到车船，情急之下，你们选择徒步前往120里外的玉山。")
     var choice = "";
@@ -248,11 +371,16 @@ function change1() {
         DIV.fadeIn();
       })
     })
+    text16 = "<p>你结束了一年的流亡，在城中的文庙安顿下来。一些教室和男生宿舍就在离你们不远的标营。</p>"
 
   }
 
   if ($user.gender == "M") {
-    text = "<p>只是军训时剃的光头还没长出头发来，让你颇有些苦恼。</p>"
+    $user.fri = "紫云"
+    text3 = "<p>只是军训时剃的光头还没长出头发来，让你颇有些苦恼。</p>"
+    text16 = "<p>你结束了一年的流亡，在城中的标营安顿下来。图书馆和女生宿舍就在离标营不远的城中文庙。</p>"
   }
-  $("#step3 div.text").append(text);
+  $("#step3 div.text").append(text3);
+  text16 += "<p>此地深处内陆，居民多吃岩盐而患甲状腺肿大。有些一年级的新生看到满街的“大脖子”，竟吓得跑回了老家。</p>"
+  $("#step16 div.text").append(text16);
 }
