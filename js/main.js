@@ -125,11 +125,16 @@ $("#step5 a.choice").click(function(e){
   e.stopPropagation();
   var DIV = $("#step5 div.result");
   var text = "";
+  var img = "";
+  img = "<img src='img/page4学生.png' class='bgimg'>"
   if ($(this).data("ans")) {
     text = "次日，金华遭到三架重型轰炸机狂炸，你虽身经其险，好在躲避及时，幸未遭害。"
   } else {
+    img = "<img src='img/page4家人1.png' class='bgimg'>"
+    img += "<img src='img/page4家人2.png' class='bgimg'>"
     text = "次日，金华遭到三架重型轰炸机狂炸，你在街上避难之时受了轻伤。"
   }
+ $("#step5").children("img").after(img);
   DIV.children("p").text(text);
   $("#step5 div.choice").fadeOut(function(){
     DIV.fadeIn();
@@ -180,7 +185,10 @@ $("#step8 a.choice").click(function(e){
   e.stopPropagation();
   var DIV = $("#step8 div.result");
   var text = "";
+  var img = "";
   if ($(this).data("ans") == "0") {
+    img += '<img src="img/page7_3.png" class="bgimg">'
+    img += '<img src="img/page7_4.png" class="bgimg">'
     text = "在自修室里，你遇到了";
     if ($user.gender == "M") {
       text += "紫云";
@@ -191,7 +199,7 @@ $("#step8 a.choice").click(function(e){
   } else {
     text = "这次考试你完美避开了所有得分点。看着成绩单，你幡然悔悟：<br>既然选择了要在国难当头之时继续做个学生，就要拿出学生的样子来。"
   }
-  DIV.prepend("<p>" + text + "</p>");
+  DIV.prepend(img + "<p>" + text + "</p>");
   $("#step8 div.choice").fadeOut(function(){
     DIV.fadeIn();
   })
@@ -242,24 +250,30 @@ $("#step12 a.choice").click(function(e){
   var DIV = $("#step12 div.result");
   var text = "";
   var temp = ""
+  var img = ""
   if ($(this).data("ans") == "0") {
+    img += "<img src='img/page10b.jpg' class='bgimg'>"
+    img += "<img src='img/page10b_1.png' class='bgimg'>"
     text += "<p>赣江边上，蓝田正在唐凤图教授的指导下勘测水位。</p>"
     text += "<p>你怕打扰他工作，在一旁默默地吃完了老乡送给他的杨梅。</p>";
     temp += "<p>看完蓝田回来不久，赣江边上多了一道十五里长堤。上田村人民十分感激，将其命名为“浙大防洪堤”。</p>"
   } else {
+    img += "<img src='img/page10p.jpg' class='bgimg'>"
+    img += "<img src='img/page10p_1.png' class='bgimg'>"
     text += "<p>跋涉大半天，你才到了碧峰所在的沙村镇。正好看到碧峰在田里带着难民们干活。</p>"
     text += "<p>犹记得去年新生报道时，同学们大都灰头土脸，唯有碧峰衬衣雪白挺括。看他这会儿面如闰土，你噗嗤一声笑了出来。</p>"
     temp += "<p>看完碧峰回来，几个月后，沙村示范垦殖场建成了，难民得有所依。回到学校里的碧峰，皮肤已经晒得黝黑发亮，你们时常打趣他，哪还有当年富家少爷样子。</p>"
   }
-  DIV.prepend(text);
+  DIV.prepend(img + text);
   $("#step12 div.choice").fadeOut(function(){
     DIV.fadeIn();
   })
   temp += '<a class="btn next" data-next="13">继续</a>';
   DIV.click(function() {
-    DIV.unbind()
-    DIV.html(temp);
-    $("#step12 a.next").click(function(){next_act($(this).data("next"));})
+    DIV.unbind().fadeOut(function() {
+      DIV.html(temp).fadeIn();
+      $("#step12 a.next").click(function(){next_act($(this).data("next"));})
+    })
   })
 })
 
@@ -286,7 +300,7 @@ $("#step13").click(function() {
     if ($(this).data("ans") == "0") {
       text += "<p>“扑通”一声，一个漂亮的入水，同学们纷纷为你喝起彩来。</p>"
     } else {
-      text += "<p>“扑通”一声，一个漂亮的入水，同学们纷纷为你喝起彩来。</p>"
+      text += "<p>一个“漂亮”的入水，水花四溅，周围的同学纷纷嘲笑你的身法。</p>"
     }
     DIV.prepend(text);
     $("#step13 div.choice").fadeOut(function(){
@@ -304,12 +318,19 @@ $("#step15 a.choice").click(function(e){
   e.stopPropagation();
   var DIV = $("#step15 div.result");
   var text = "";
+  var img = ""
   if ($(this).data("ans") == "0") {
+    img += "<img class='bgimg' src='img/page13_1.png'>"
     text = "<p>带着竺校长赠予的一张地图、一副指南针，你们用双脚丈量着泰和到宜山一千多里的路途。</p>"
   } else {
+    if ($user.gender == "M") {
+      img += "<img class='bgimg' src='img/page13m.png'>"
+    } else if ($user.gender == "F") {
+      img += "<img class='bgimg' src='img/page13f.png'>"
+    }
     text = "<p>四十多天、一千多里的行程中，你们抓住一切机会登台亮相，用一首首抗日歌曲，一场场抗日剧目，发出你们青年的“呐喊”。</p>"
   }
-  DIV.prepend(text);
+  DIV.prepend(img + text);
   $("#step15 div.choice").fadeOut(function(){
     DIV.fadeIn();
   })
@@ -375,6 +396,8 @@ function change1() {
         DIV.fadeIn();
       })
     })
+    img11 = "<img src='img/page9f.png' class='bgimg'>";
+    img13 = "<img src='img/page11f.jpg' class='bgimg'>";
     text16 = "<p>你结束了一年的流亡，在城中的文庙安顿下来。一些教室和男生宿舍就在离你们不远的标营。</p>"
 
   }
@@ -382,9 +405,13 @@ function change1() {
   if ($user.gender == "M") {
     $user.fri = "紫云"
     text3 = "<p>只是军训时剃的光头还没长出头发来，让你颇有些苦恼。</p>"
+    img11 = "<img src='img/page9m.png' class='bgimg'>";
+    img13 = "<img src='img/page11m.jpg' class='bgimg'>";
     text16 = "<p>你结束了一年的流亡，在城中的标营安顿下来。图书馆和女生宿舍就在离标营不远的城中文庙。</p>"
   }
   $("#step3 div.text").append(text3);
   text16 += "<p>此地深处内陆，居民多吃岩盐而患甲状腺肿大。有些一年级的新生看到满街的“大脖子”，竟吓得跑回了老家。</p>"
   $("#step16 div.text").append(text16);
+  $("#step11 div.text").append(img11);
+  $("#step13").prepend(img13);
 }

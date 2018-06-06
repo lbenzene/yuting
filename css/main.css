@@ -185,16 +185,18 @@ div.next {
   top: 600%;
 }
  */
-div.section > img.bgimg {
+img.bgimg {
   display: block;
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
   vertical-align: middle;
   z-index: -1;
   margin: 0;
   padding: 0;
   height: 100%;
   width: 100%;
-  background-color: #999999;
+  background-color: transparent;
   overflow: hidden;
 }
 
