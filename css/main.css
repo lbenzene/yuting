@@ -230,7 +230,7 @@ div.section div.result > p,
 div.section div.text > p,
 div.section div.next > p,
 div.section > p {
-  font-family: 楷体;
+  font-family:  KaiTi, KaiTi_GB2312, "Microsoft Yahei";
   color: #EBEBEB;
   font-weight: normal;
   text-shadow: 1px 1px 1px #000000;
