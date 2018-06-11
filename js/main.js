@@ -12,6 +12,7 @@ var NowAct = 1;
 var role4 = 0;
 var role5 = 0;
 var role7 = 0;
+var role18 = 0;
 
 $(document).ready(function(){
   // 定义所有下一页标签
@@ -26,11 +27,11 @@ $(document).ready(function(){
 })
 
 function oridinary(page) {
-    $this = page;
-    $this.unbind();
-    $this.find("div.text").fadeOut(function(){
-      $this.find("div.choice").fadeIn();
-    })
+  $this = page;
+  $this.unbind();
+  $this.find("div.text").fadeOut(function(){
+    $this.find("div.choice").fadeIn();
+  })
 }
 
 $("#step1").click(function() {
@@ -264,14 +265,14 @@ $("#step12 a.choice").click(function(e){
     text += "<p>犹记得去年新生报道时，同学们大都灰头土脸，唯有碧峰衬衣雪白挺括。看他这会儿面如闰土，你噗嗤一声笑了出来。</p>"
     temp += "<p>看完碧峰回来，几个月后，沙村示范垦殖场建成了，难民得有所依。回到学校里的碧峰，皮肤已经晒得黝黑发亮，你们时常打趣他，哪还有当年富家少爷样子。</p>"
   }
-  DIV.prepend(img + text);
+  DIV.prepend(text);
   $("#step12 div.choice").fadeOut(function(){
     DIV.fadeIn();
   })
   temp += '<a class="btn next" data-next="13">继续</a>';
   DIV.click(function() {
     DIV.unbind().fadeOut(function() {
-      DIV.html(temp).fadeIn();
+      DIV.html(img + temp).fadeIn();
       $("#step12 a.next").click(function(){next_act($(this).data("next"));})
     })
   })
@@ -345,7 +346,6 @@ $("#step16 a.choice").click(function(e){
   var DIV = $("#step16 div.result");
   var text = "";
   if ($(this).data("ans") == "0") {
-    text += "<p>“真是天妒英才，我怕命不久矣，还是把它给" + $user.fri + "吧”</p>"
     text += "<p>" + $user.fri + "不肯收下你的钢笔，让你不要乱想，说着说着声音却哽咽了起来。</p>"
     text += "<p>接下来的几天，你的意识开始模糊。绝望之时，终于传来了好消息：竺校长的人从广东带药回来了！</p>"
   } else {
@@ -357,6 +357,43 @@ $("#step16 a.choice").click(function(e){
   })
 })
 
+$("#step17").click(function() {
+  if ($user.gender == "M") {
+    oridinary($(this));
+  } else {
+    $("#step17").unbind();
+    $("#step17 div.text").fadeOut(function() {
+      $("#step17 div.result").prepend("<p>你和紫云穿着旗袍跑不快，慌乱之中躲进了附近的坟场。轰炸反复了三轮，终于没了动静。</p>")
+      .fadeIn()
+    })
+  }
+})
+
+$("#step17 a.choice").click(function(e){
+  e.stopPropagation();
+  var DIV = $("#step17 div.result");
+  var text = "";
+  if ($(this).data("ans") == "0") {
+    text += "<p>一直等到轰炸结束，大蛇也没有攻击你们</p>"
+  } else {
+    text += "<p>你们慌忙逃出，好在这附近有许多天然的岩洞，跑了没多远，你们便又钻进一个，躲在洞里直到轰炸结束。</p>"
+  }
+  DIV.prepend(text);
+  $("#step17 div.choice").fadeOut(function(){
+    DIV.fadeIn();
+  })
+})
+
+$("#step18").click(function() {
+  $this = $(this);
+  // if (role18 == $this.children("div.text").size() - 2) {
+  if (role18 == 1) {
+    $this.unbind();
+  }
+  $this.children("div.text:eq(" + role18 + ")").fadeOut(function() {
+    $this.children("div.text:eq(" + ++role18 + ")").fadeIn();
+  });
+})
 
 function next_act(n) {
   n;
@@ -398,8 +435,10 @@ function change1() {
     })
     img11 = "<img src='img/page9f.png' class='bgimg'>";
     img13 = "<img src='img/page11f.jpg' class='bgimg'>";
+    img16 = "<img src='img/page14f.jpg' class='bgimg'>";
     text16 = "<p>你结束了一年的流亡，在城中的文庙安顿下来。一些教室和男生宿舍就在离你们不远的标营。</p>"
-
+    text18 = "<p>回到城中你才发现，男生住的标营已经全部被夷为平地。</p>"
+    text18 += "<p>春寒料峭，眼看男生们没衣穿没被盖，你们纷纷捐出了自己的冬衣。</p>"
   }
 
   if ($user.gender == "M") {
@@ -407,11 +446,17 @@ function change1() {
     text3 = "<p>只是军训时剃的光头还没长出头发来，让你颇有些苦恼。</p>"
     img11 = "<img src='img/page9m.png' class='bgimg'>";
     img13 = "<img src='img/page11m.jpg' class='bgimg'>";
+    img16 = "<img src='img/page14m.jpg' class='bgimg'>";
     text16 = "<p>你结束了一年的流亡，在城中的标营安顿下来。图书馆和女生宿舍就在离标营不远的城中文庙。</p>"
+    text18 = "<p>劫后余生，你哼着没唱完的校歌走在回校路上，却发现整个标营已经沦为一片废墟。</p>"
+    text18 += "<p>" + $user.tutor +"教授的夫人看你无处可去，收留你住在家中。</p>"
   }
   $("#step3 div.text").append(text3);
   text16 += "<p>此地深处内陆，居民多吃岩盐而患甲状腺肿大。有些一年级的新生看到满街的“大脖子”，竟吓得跑回了老家。</p>"
   $("#step16 div.text").append(text16);
+  $("#step16 div.choice").prepend(img16);
+  $("#step16 span").text($user.fri);
   $("#step11 div.text").append(img11);
   $("#step13").prepend(img13);
+  $("#step18 div.text").prepend(text18);
 }

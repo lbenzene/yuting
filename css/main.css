@@ -226,6 +226,7 @@ a.next {
   box-sizing: border-box;
 }
 
+div.section div.choice > p,
 div.section div.result > p,
 div.section div.text > p,
 div.section div.next > p,
@@ -348,18 +349,6 @@ div.choice {
   font-family: 'Microsoft Yahei';
   margin-top: 2em;
   text-align: center;
-}
-
-div.choice > p {
-  font-family: 楷体;
-  color: #EBEBEB;
-  text-align: left;
-  font-weight: normal;
-  text-shadow: 1px 1px 1px #000000;
-  margin: 0 1em 0.5em 1em;
-  margin-bottom: 0.5em;
-
-  line-height: 1.2em;
 }
 
 div.choice a.choice {
