@@ -117,6 +117,7 @@ $("#step3 a.choice").click(function(e){
   e.stopPropagation();
   $user.tutor = $(this).data("ans");
   $("#step3 span").text($user.tutor);
+  $("#step20 div.choice").children("a.choice:eq(q) span").text($user.tutor);
   $("#step3 div.choice").fadeOut(function(){
     $("#step3 div.result").fadeIn();
   })
@@ -395,6 +396,74 @@ $("#step18").click(function() {
   });
 })
 
+$("#step19").click(function() {
+  oridinary($(this));
+})
+
+$("#step19 a.choice").click(function(e){
+  e.stopPropagation();
+  var DIV = $("#step19 div.result");
+  var text = "";
+  if ($(this).data("ans") == "0") {
+    text = "<p>歌咏队名额已满，你不甘心，次次参观他们彩排。</p>"
+    text += "<p>有天被先生看到，听你唱了几句，你竟就这样加入了。</p>"
+  } else {
+    text = "<p>先生的课总是座无虚席，你常要提前两刻钟去占位置，不然就只能站在窗外听了。</p>"
+  }
+  DIV.prepend(text);
+  $("#step19 div.choice").fadeOut(function(){
+    DIV.fadeIn();
+  })
+})
+
+$("#step20").click(function() {
+  oridinary($(this));
+})
+
+$("#step20 a.choice").click(function(e){
+  e.stopPropagation();
+  var DIV = $("#step20 div.result");
+  var text = "";
+  if ($(this).data("ans") == "0") {
+    text = "<p>你们就这样罢起课来，竺校长又好气又好笑，直骂你们不懂事。</p>"
+    text += "<p>背地里其实早就开始为下一次迁校作准备了。</p>"
+  } else {
+    text = "<p>没过两天你就听说，罢课的同学们被校长骂了。但同学们要求的迁校一事，却已经有了眉目。</p>"
+  }
+  DIV.prepend(text);
+  $("#step20 div.choice").fadeOut(function(){
+    DIV.fadeIn();
+  })
+})
+
+$("#step21").click(function() {
+  oridinary($(this));
+})
+
+$("#step21 a.choice").click(function(e){
+  e.stopPropagation();
+  var DIV = $("#step21 div.result");
+  var text = "";
+  var img = "";
+  if ($(this).data("ans") == "0") {
+    img += "<img class='bgimg' src='img/page19_1.png'>"
+    if ($user.major == "文") {
+      text = "<p>你负责运送书籍，随书一起上了汽车开往遵义。</p>"
+    } else {
+      text = "<p>你负责运送实验仪器，随仪器走水路入赣。</p>"
+    }
+  } else {
+    img += "<img class='bgimg' src='img/page19_2.png'>"
+    text = "<p>在前线上，你为全身烧伤的战士换过绷带，也为不满16岁的小兵写过家书。</p>"
+    text += "<p>战争激烈，77人的浙大“战地服务团”逐渐被打散，好在大家提前说好，之后各自去遵义再见。</p>"
+  }
+  DIV.prepend(img + text);
+  $("#step21 div.choice").fadeOut(function(){
+    DIV.fadeIn();
+  })
+})
+
+
 function next_act(n) {
   n;
   // 滑动效果
@@ -439,6 +508,7 @@ function change1() {
     text16 = "<p>你结束了一年的流亡，在城中的文庙安顿下来。一些教室和男生宿舍就在离你们不远的标营。</p>"
     text18 = "<p>回到城中你才发现，男生住的标营已经全部被夷为平地。</p>"
     text18 += "<p>春寒料峭，眼看男生们没衣穿没被盖，你们纷纷捐出了自己的冬衣。</p>"
+    text20 = "女孩"
   }
 
   if ($user.gender == "M") {
@@ -450,6 +520,7 @@ function change1() {
     text16 = "<p>你结束了一年的流亡，在城中的标营安顿下来。图书馆和女生宿舍就在离标营不远的城中文庙。</p>"
     text18 = "<p>劫后余生，你哼着没唱完的校歌走在回校路上，却发现整个标营已经沦为一片废墟。</p>"
     text18 += "<p>" + $user.tutor +"教授的夫人看你无处可去，收留你住在家中。</p>"
+    text20 = "男孩"
   }
   $("#step3 div.text").append(text3);
   text16 += "<p>此地深处内陆，居民多吃岩盐而患甲状腺肿大。有些一年级的新生看到满街的“大脖子”，竟吓得跑回了老家。</p>"
@@ -458,5 +529,6 @@ function change1() {
   $("#step16 span").text($user.fri);
   $("#step11 div.text").append(img11);
   $("#step13").prepend(img13);
-  $("#step18 div.text").prepend(text18);
+  $("#step18 div.text:eq(0)").prepend(text18);
+  $("#step20 div.choice").children("a.choice:eq(0) span").text(text20);
 }

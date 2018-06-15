@@ -237,6 +237,7 @@ div.section > p {
   text-shadow: 1px 1px 1px #000000;
   margin: 0 1em 0.5em 1em;
   margin-bottom: 0.5em;
+  text-align: left;
 }
 
 div#step1 > div:first-child {
@@ -348,7 +349,6 @@ div.choice {
   display: none;
   font-family: 'Microsoft Yahei';
   margin-top: 2em;
-  text-align: center;
 }
 
 div.choice a.choice {
