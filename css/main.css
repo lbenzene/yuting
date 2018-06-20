@@ -369,6 +369,10 @@ div.choice > a.choice {
   margin-bottom: 0.5em;
 }
 
+div.choice > p > b {
+  text-align: center;
+}
+
 div.choice > p > a.choice {
   display: inline;
 }

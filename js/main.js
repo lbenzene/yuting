@@ -11,12 +11,11 @@ $user.fri = ""
 var NowAct = 1;
 var role4 = 0;
 var role5 = 0;
-var role7 = 0;
-var role18 = 0;
 
 $(document).ready(function(){
   // 定义所有下一页标签
-  $("a.next").click(function(){
+  $("a.next").click(function(e){
+    e.stopPropagation();
     next_act($(this).data("next"));
   })
 
@@ -39,10 +38,6 @@ $("#step1").click(function() {
 })
 
 $("#step2").click(function() {
-  oridinary($(this));
-})
-
-$("#step3").click(function() {
   oridinary($(this));
 })
 
@@ -81,10 +76,6 @@ $("#step6").click(function() {
     oridinary($(this));    
 })
 
-$("#step8").click(function() {
-  oridinary($(this)); 
-})
-
 $("#step1 a.btn").click(function(e){
   e.stopPropagation();
   $user.name = $("input[name='name']").val();
@@ -111,6 +102,10 @@ $("#step2 a.choice").click(function(e) {
       $("#step2 div.result").fadeIn();
     })
   }
+})
+
+$("#step3").click(function() {
+  oridinary($(this));
 })
 
 $("#step3 a.choice").click(function(e){
@@ -158,12 +153,13 @@ $("#step6 a.choice").click(function(e){
   })
 })
 
+var role7 = 0;
 $("#step7").click(function() {
   $this = $(this);
-  if (role7 == 1) {
+  if (role7 == 2) {
     $this.unbind();
   }
-  if (role7 < 1) {
+  if (role7 < 2) {
     $this.children("div.text:eq(" + role7 + ")").fadeOut(function() {
       $this.children("div.text:eq(" + ++role7 + ")").fadeIn();
     });    
@@ -173,12 +169,28 @@ $("#step7").click(function() {
       temp = "<p>你们主动把客车车厢让给了女同学和教授，挤进了敞篷铁车皮里。"
       temp += "风从一个个弹孔中钻进脖子，你们冷的直打哆嗦，又怕染上风寒，不敢睡觉，只能一路高唱《松花江上》给自己鼓劲儿。</p>";
     } else if ($user.gender == "F") {
-      temp = "<p>男生们展现绅士风度，主动把客车车厢让给了教授和女孩子们，一股脑挤进了敞篷铁皮车里，你得以在客车厢里睡了安稳的一觉。</p>";
-      temp += "<p>第二天，看到许多男生的棉衣都破破烂烂地露出棉絮，你好奇地问他们怎么搞的，男孩子们不好意思地告诉你，货车的车皮恐怕都被子弹打过，到处是枪眼，一不小心衣服就被刮破了。</p>"
-      temp += "<p>你听了心里极不是滋味，好在离家前跟母亲学过点女红，可以帮他们补补衣裳。</p>";
+      temp = "<p>男生们展现绅士风度，主动把客车车厢让给了教授和女孩子们，你得以睡了安稳的一觉。</p>";
+      temp += "<p>第二天，看到许多男生的棉衣都被敞篷的铁车皮刮得破破烂烂，你心里极不是滋味，好在离家前跟母亲学过点女红，可以帮他们补补衣裳。</p>"
     }
     $this.find("div.text:eq(" + role7++ + ")").fadeOut(function() {
       $("#step7 div.result").prepend(temp).fadeIn();
+    })
+  }
+})
+
+var role8 = 0;
+$("#step8").click(function() {
+  $this = $(this);
+  if (role8 == 1) {
+    $this.unbind();
+  }
+  if (role8 < 1) {
+    $this.children("div.text:eq(" + role8 + ")").fadeOut(function() {
+      $this.children("div.text:eq(" + ++role8 + ")").fadeIn();
+    });    
+  } else {
+    $this.find("div.text:eq(" + role8++ + ")").fadeOut(function() {
+      $("#step8 div.choice").fadeIn();
     })
   }
 })
@@ -197,7 +209,7 @@ $("#step8 a.choice").click(function(e){
     } else if ($user.gender == "F") {
       text += "丹阳";
     }
-    text += "你们分享着同一盏菜油灯，各自解着X、Y,念着ABCD。半点豆样大小的黄灯光，照亮了你们沉思的脸庞。";
+    text += "，你们分享着同一盏菜油灯，各自解着X、Y,念着ABCD。半点豆样大小的黄灯光，照亮了你们沉思的脸庞。";
   } else {
     text = "这次考试你完美避开了所有得分点。看着成绩单，你幡然悔悟：<br>既然选择了要在国难当头之时继续做个学生，就要拿出学生的样子来。"
   }
@@ -207,20 +219,41 @@ $("#step8 a.choice").click(function(e){
   })
 })
 
+var role9 = 0;
 $("#step9").click(function() {
-  $(this).unbind();
-  var temp = "";
-  if ($user.major == "理") {
-    temp = "<p>雨终日不止，山花谢了又开，每日卯时即起，晨曦中埋头苦读，做实验，刷试管；"
-    temp += "又复三更灯火，月色下冥思静想，写报告，做分析。这样简朴单纯的生活，尽管清苦，却也十分充实。</p>";
-  } else if ($user.major == "文") {
-    temp = "<p>你每日黎明即起，在朝阳之下，漫山遍野，朗诵默读。</p>";
-    temp += "<p>黄昏时分，你时常呆在竺校长新栽的常青柏边，思考先生讲过的抗战与士风。</p>"
-    temp += "<p>小树摇摇曳曳，世界静默的好像一个漫长的镜头。</p>";
+  $this = $(this);
+  if (role9 == 0) {
+    var temp1 = temp2 = "";
+    if ($user.major == "理") {
+      temp1 = "<p>雨终日不止，山花谢了又开，每日卯时即起，晨曦中埋头苦读，做实验，刷试管；"
+      temp1 += "又复三更灯火，月色下冥思静想，写报告，做分析。";
+      temp2 = "这样简朴单纯的生活，尽管清苦，却也十分充实。</p>";
+    } else if ($user.major == "文") {
+      temp1 = "<p>你每日黎明即起，在朝阳之下，漫山遍野，朗诵默读。</p>";
+      temp1 += "<p>黄昏时分，你时常呆在竺校长新栽的常青柏边，思考先生讲过的抗战与士风。</p>"
+      temp2 += "<p>小树摇摇曳曳，世界静默的好像一个漫长的镜头。</p>";
+      temp2 += "<p>在如此纷乱急迫的国内大环境之中，你却在这里过着有条不紊的单纯的学术生活。</p>"
+    }
+    $("#step9 div.text:eq(3)").prepend(temp1);
+    $("#step9 div.text:eq(4)").prepend(temp2);
   }
-  $("#step9 div.result").prepend(temp);
+  if (role9 < 4) {
+    $this.children("div.text:eq(" + role9 + ")").fadeOut(function() {
+      $this.children("div.text:eq(" + ++role9 + ")").fadeIn();
+    });    
+  } else {
+    $this.unbind();
+  }
   $(this).find("div.text").fadeOut(function() {
     $("#step9 div.result").fadeIn();
+  })
+})
+
+$("#step10").click(function() {
+  $this = $(this);
+  $this.unbind();
+  $this.children("div.text:eq(0)").fadeOut(function() {
+    $this.children("div.text:eq(1)").fadeIn();
   })
 })
 
@@ -243,8 +276,19 @@ $("#step11 a.choice").click(function(e){
   })
 })
 
+var role12 = 0;
 $("#step12").click(function() {
-  oridinary($(this));
+  $this = $(this);
+  if (role12 < 1) {
+    $this.children("div.text:eq(" + role12 + ")").fadeOut(function() {
+      $this.children("div.text:eq(" + ++role12 + ")").fadeIn();
+    });    
+  } else {
+    $this.unbind();
+    $this.children("div.text:eq(" + role12 + ")").fadeOut(function() {
+      $this.children("div.choice").fadeIn();
+    });    
+  }
 })
 
 $("#step12 a.choice").click(function(e){
@@ -258,13 +302,13 @@ $("#step12 a.choice").click(function(e){
     img += "<img src='img/page10b_1.png' class='bgimg'>"
     text += "<p>赣江边上，蓝田正在唐凤图教授的指导下勘测水位。</p>"
     text += "<p>你怕打扰他工作，在一旁默默地吃完了老乡送给他的杨梅。</p>";
-    temp += "<p>看完蓝田回来不久，赣江边上多了一道十五里长堤。上田村人民十分感激，将其命名为“浙大防洪堤”。</p>"
+    temp += "<p>看完蓝田回来不久，赣江边上多了一道十五里长堤。上田村人民感念你们，将其命名为“浙大防洪堤”。</p>"
   } else {
     img += "<img src='img/page10p.jpg' class='bgimg'>"
     img += "<img src='img/page10p_1.png' class='bgimg'>"
     text += "<p>跋涉大半天，你才到了碧峰所在的沙村镇。正好看到碧峰在田里带着难民们干活。</p>"
     text += "<p>犹记得去年新生报道时，同学们大都灰头土脸，唯有碧峰衬衣雪白挺括。看他这会儿面如闰土，你噗嗤一声笑了出来。</p>"
-    temp += "<p>看完碧峰回来，几个月后，沙村示范垦殖场建成了，难民得有所依。回到学校里的碧峰，皮肤已经晒得黝黑发亮，你们时常打趣他，哪还有当年富家少爷样子。</p>"
+    temp += "<p>看完碧峰回来，几个月后，沙村示范垦殖场建成了，难民得有所依。回到学校里的碧峰，皮肤黝黑发亮，你们时常打趣他，哪还有当年富家少爷样子。</p>"
   }
   DIV.prepend(text);
   $("#step12 div.choice").fadeOut(function(){
@@ -287,7 +331,7 @@ $("#step13").click(function() {
   })
   text = ""
   if ($user.gender == "M") {
-    text += "<p>你自幼在水边长大，水性极好，每次上游泳课都成了你“大展身手”的机会。江边搭了两个台子供同学们跳水，你选择登上：</p>"
+    text += "<p>你自幼在水边长大，水性极好，每次上游泳课都成了你“大展身手”的机会。</p><p>江边搭了两个台子供同学们跳水，你选择登上：</p>"
     text += '<a class="choice" data-ans="0">1米台</a>'
     text += '<a class="choice" data-ans="1">2米台</a>'
   } else if ($user.gender == "F") {
@@ -312,10 +356,33 @@ $("#step13").click(function() {
   $("#step13 a.next").click(function(){next_act($(this).data("next"));})
 })
 
-$("#step15").click(function() {
-  oridinary($(this));
+var role14 = 0;
+$("#step14").click(function() {
+  $this = $(this);
+  if (role14 < 3) {
+    $this.children("div.text:eq(" + role14 + ")").fadeOut(function() {
+      $this.children("div.text:eq(" + ++role14 + ")").fadeIn();
+    });    
+  } else {
+    $this.unbind();
+    next_act(15);    
+  }
 })
 
+var role15 = 0;
+$("#step15").click(function() {
+  $this = $(this);
+  if (role15 < 2) {
+    $this.children("div.text:eq(" + role15 + ")").fadeOut(function() {
+      $this.children("div.text:eq(" + ++role15 + ")").fadeIn();
+    });    
+  } else {
+    $this.unbind();
+    $this.children("div.text:eq(" + role15 + ")").fadeOut(function() {
+      $this.children("div.choice").fadeIn()
+    })
+  }
+})
 $("#step15 a.choice").click(function(e){
   e.stopPropagation();
   var DIV = $("#step15 div.result");
@@ -338,8 +405,19 @@ $("#step15 a.choice").click(function(e){
   })
 })
 
+var role16 = 0;
 $("#step16").click(function() {
-  oridinary($(this));
+  $this = $(this);
+  if (role16 < 2) {
+    $this.children("div.text:eq(" + role16 + ")").fadeOut(function() {
+      $this.children("div.text:eq(" + ++role16 + ")").fadeIn();
+    });    
+  } else {
+    $this.unbind();
+    $this.children("div.text:eq(" + role16 + ")").fadeOut(function() {
+      $this.children("div.choice").fadeIn()
+    })
+  }
 })
 
 $("#step16 a.choice").click(function(e){
@@ -375,7 +453,7 @@ $("#step17 a.choice").click(function(e){
   var DIV = $("#step17 div.result");
   var text = "";
   if ($(this).data("ans") == "0") {
-    text += "<p>一直等到轰炸结束，大蛇也没有攻击你们</p>"
+    text += "<p>一直等到轰炸结束，大蛇也没有攻击你们。</p>"
   } else {
     text += "<p>你们慌忙逃出，好在这附近有许多天然的岩洞，跑了没多远，你们便又钻进一个，躲在洞里直到轰炸结束。</p>"
   }
@@ -385,15 +463,17 @@ $("#step17 a.choice").click(function(e){
   })
 })
 
+var role18 = 0
 $("#step18").click(function() {
   $this = $(this);
-  // if (role18 == $this.children("div.text").size() - 2) {
-  if (role18 == 1) {
+  if (role18 < 3) {
+    $this.children("div.text:eq(" + role18 + ")").fadeOut(function() {
+      $this.children("div.text:eq(" + ++role18 + ")").fadeIn();
+    });    
+  } else {
     $this.unbind();
+    next_act(19);
   }
-  $this.children("div.text:eq(" + role18 + ")").fadeOut(function() {
-    $this.children("div.text:eq(" + ++role18 + ")").fadeIn();
-  });
 })
 
 $("#step19").click(function() {
@@ -446,14 +526,14 @@ $("#step21 a.choice").click(function(e){
   var text = "";
   var img = "";
   if ($(this).data("ans") == "0") {
-    img += "<img class='bgimg' src='img/page19_1.png'>"
+    img += "<img class='bgimg' src='img/page19_1.jpg'>"
     if ($user.major == "文") {
       text = "<p>你负责运送书籍，随书一起上了汽车开往遵义。</p>"
     } else {
       text = "<p>你负责运送实验仪器，随仪器走水路入赣。</p>"
     }
   } else {
-    img += "<img class='bgimg' src='img/page19_2.png'>"
+    img += "<img class='bgimg' src='img/page19_2.jpg'>"
     text = "<p>在前线上，你为全身烧伤的战士换过绷带，也为不满16岁的小兵写过家书。</p>"
     text += "<p>战争激烈，77人的浙大“战地服务团”逐渐被打散，好在大家提前说好，之后各自去遵义再见。</p>"
   }
@@ -463,6 +543,18 @@ $("#step21 a.choice").click(function(e){
   })
 })
 
+var role22 = 0
+$("#step22").click(function() {
+  $this = $(this);
+  if (role22 < 1) {
+    $this.children("div.text:eq(" + role22 + ")").fadeOut(function() {
+      $this.children("div.text:eq(" + ++role22 + ")").fadeIn();
+    });    
+  } else {
+    $this.unbind();
+    next_act(19);
+  }
+})
 
 function next_act(n) {
   n;
@@ -492,10 +584,10 @@ function change1() {
       e.stopPropagation();
       var DIV = $("#step6 div.result");
       var text = "";
-      if ($(this).data("ans")) {
-        text = "没有后果？"
+      if ($(this).data("ans") == 0) {
+        text = "丹阳接过橘子，美滋滋地笑了。"
       } else {
-        text = "没有后果？"
+        text = "看到你偷吃橘子的蠢样，丹阳无奈地笑了。"
       }
       DIV.prepend("<p>" + text + "</p>");
       $("#step6 div.choice").fadeOut(function(){
@@ -505,7 +597,7 @@ function change1() {
     img11 = "<img src='img/page9f.png' class='bgimg'>";
     img13 = "<img src='img/page11f.jpg' class='bgimg'>";
     img16 = "<img src='img/page14f.jpg' class='bgimg'>";
-    text16 = "<p>你结束了一年的流亡，在城中的文庙安顿下来。一些教室和男生宿舍就在离你们不远的标营。</p>"
+    text16 = "<p>你结束了一年的流亡，在城中的文庙安顿下来。一些教室和男生宿舍就在不远的标营。</p>"
     text18 = "<p>回到城中你才发现，男生住的标营已经全部被夷为平地。</p>"
     text18 += "<p>春寒料峭，眼看男生们没衣穿没被盖，你们纷纷捐出了自己的冬衣。</p>"
     text20 = "女孩"
@@ -517,14 +609,14 @@ function change1() {
     img11 = "<img src='img/page9m.png' class='bgimg'>";
     img13 = "<img src='img/page11m.jpg' class='bgimg'>";
     img16 = "<img src='img/page14m.jpg' class='bgimg'>";
-    text16 = "<p>你结束了一年的流亡，在城中的标营安顿下来。图书馆和女生宿舍就在离标营不远的城中文庙。</p>"
+    text16 = "<p>你结束了一年的流亡，在城中的标营安顿下来。图书馆和女生宿舍就在不远的城中文庙。</p>"
     text18 = "<p>劫后余生，你哼着没唱完的校歌走在回校路上，却发现整个标营已经沦为一片废墟。</p>"
     text18 += "<p>" + $user.tutor +"教授的夫人看你无处可去，收留你住在家中。</p>"
     text20 = "男孩"
   }
   $("#step3 div.text").append(text3);
   text16 += "<p>此地深处内陆，居民多吃岩盐而患甲状腺肿大。有些一年级的新生看到满街的“大脖子”，竟吓得跑回了老家。</p>"
-  $("#step16 div.text").append(text16);
+  $("#step16 div.text:eq(0)").append(text16);
   $("#step16 div.choice").prepend(img16);
   $("#step16 span").text($user.fri);
   $("#step11 div.text").append(img11);
