@@ -627,9 +627,10 @@ $("#step23 a.choice").click(function(e){
     text = result23.r2;
   }
   DIV.prepend(text);
-  generate_p24();
+  
   $("#step23 div.choice").fadeOut(function(){
     DIV.fadeIn().click(function() {
+      generate_p24();
       next_act(24)
     });
   })
