@@ -50,12 +50,14 @@ $("#step2").click(function() {
 $("#step4").click(function() {
   $this = $(this);
   // if (role4 == $this.children("div.text").size() - 2) {
-  if (role4 == 0) {
-    $this.unbind();
+  if (role4 < 1) {
+    $this.children("div.text:eq(" + role4 + ")").fadeOut(function() {
+      $this.children("div.text:eq(" + ++role4 + ")").fadeIn();
+    })
+  } else {
+    $this.unbind()
+    next_act(5)
   }
-  $this.children("div.text:eq(" + role4 + ")").fadeOut(function() {
-    $this.children("div.text:eq(" + ++role4 + ")").fadeIn();
-  });
 })
 
 $("#step5").click(function() {
@@ -106,7 +108,9 @@ $("#step2 a.choice").click(function(e) {
   } else {
     $("#step3 img.bgimg").attr("src", "img/page2_4.jpg");
     $("#step2 div.choice").fadeOut(function(){
-      $("#step2 div.result").fadeIn();
+      $("#step2 div.result").fadeIn().click(function() {
+        next_act(3)
+      });
     })
   }
 })
@@ -122,7 +126,9 @@ $("#step3 a.choice").click(function(e){
   $("#step3 span").text($user.tutor);
   $("#step20 div.choice").children("a.choice:eq(q) span").text($user.tutor);
   $("#step3 div.choice").fadeOut(function(){
-    $("#step3 div.result").fadeIn();
+    $("#step3 div.result").fadeIn().click(function() {
+        next_act(4)
+    });
   })
 })
 
@@ -362,7 +368,9 @@ $("#step13").click(function() {
   } else if ($user.gender == "F") {
     text += "<p>你自幼怕水，每次上游泳课总是找理由待在岸上。体育老师没说什么，只是默默地将签到台挪到了泳池中心。</p>"
     text += "<p>你白眼升天，只能硬着头皮下水。没想到，20次“水中签到”之后，你竟然学会游泳了！</p>"
-    text += '<a class="btn next" data-next="14">继续</a>'
+    $("#step13 div.choice").click(function(){
+      next_act(14);
+    })
   }
   $(this).children("div.choice").html(text);
   $("#step13 a.choice").click(function(e){
@@ -652,7 +660,6 @@ $("#step26 a.choice").click(function(e){
         next_act(28);
       } else {
         generate_p27()
-        $("#step24").fadeOut()
         next_act(27);
       }
     });
@@ -773,13 +780,14 @@ function generate_p25() {
     }
     text1 += "之后，你的生活越发平淡无聊，每日两点一线的穿梭在教室与宿舍之间。</p>"
     text2 = "<p>不知不觉间，比你好看的人恋爱了，比你丑的人也恋爱了，只有你，一直形单影只。</p>"
-    $("#step25 div.choice").html(img + text1)
+    $("#step25").prepend(img);
+    $("#step25 div.choice").html(text1)
     $("#step25 div.result").prepend(text2).click(function() {
       if ($user.gender == "M") {
         next_act(26)
       } else {
         generate_p27()
-        $("#step24").fadeOut()
+        $("#step25").fadeOut()
         next_act(27)
       }
     })
@@ -838,7 +846,7 @@ function generate_p25() {
             next_act(26)
           } else {
             generate_p27()
-            $("#step24").fadeOut()
+            $("#step25").fadeOut()
             next_act(27)
           }
         });
@@ -895,10 +903,10 @@ function generate_p24() {
       } else {
         text = result2;
       }
-      generate_p25()
       DIV.prepend(text);
       $("#step24 div.choice").fadeOut(function(){
         DIV.fadeIn().click(function() {
+          generate_p25()
           next_act(25)
         });
       })
@@ -971,7 +979,9 @@ function change1() {
       }
       DIV.prepend("<p>" + text + "</p>");
       $("#step6 div.choice").fadeOut(function(){
-        DIV.fadeIn();
+        DIV.fadeIn().click(function(){
+          next_act(7)
+        });
       })
     })
     img11 = "<img src='img/page9f.png' class='bgimg'>";
