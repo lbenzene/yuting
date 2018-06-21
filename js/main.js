@@ -412,13 +412,8 @@ $("#step13").click(function() {
 
 var role14 = 0;
 $("#step14").click(function() {
-  $this = $(this);
-  if (role14 < $this.children("div.text").children("p").length - 1) {
-    $this.children("div.text").children("p:eq(" + ++role14 + ")").fadeIn();    
-  } else {
-    $this.unbind();
-    next_act(29)
-  }
+  $this.unbind();
+  next_act(15)
 })
 
 var role15 = 0;
