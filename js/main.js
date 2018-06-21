@@ -84,6 +84,11 @@ $("#step6").click(function() {
     oridinary($(this));    
 })
 
+$("#step1 label").click(function(){
+  $(this).addClass("checked");
+  $(this).siblings("label").removeClass("checked");
+})
+
 $("#step1 a.btn").click(function(e){
   e.stopPropagation();
   $user.name = $("input[name='name']").val();
@@ -343,7 +348,6 @@ $("#step12 a.choice").click(function(e){
   $("#step12 div.choice").fadeOut(function(){
     DIV.fadeIn();
   })
-  temp += '<a class="btn next" data-next="13">继续</a>';
   DIV.click(function() {
     DIV.unbind().fadeOut(function() {
       DIV.html(img + temp).fadeIn().click(function() {
@@ -653,10 +657,10 @@ $("#step26 a.choice").click(function(e){
     text = "<p>你的选择得到了"+$user.tutor+"教授的肯定，他一向主张青年学生要用头脑报国，此举更加需要恒心与毅力。</p>"
   }
   DIV.prepend(text);
-  generate_p24();
   $("#step26 div.choice").fadeOut(function(){
     DIV.fadeIn().click(function() {
       if ($user.result == 1) {
+        $("#step26").fadeOut()
         generate_p28()
         next_act(28);
       } else {
@@ -870,7 +874,8 @@ function generate_p24() {
     if ($user.gender == "F" && $user.choice[16] == 0) {
       text2 += "<p>桐油灯冒黑烟，灯下坐得久了，擤出的鼻涕都成了黑的。好在有丹阳送你的肥皂，小小一块，每天晚上就能把脸洗得干干净净了。</p>"
     }
-    $("#step24 div.text").prepend(img1).append(text1);
+    $("#step24").prepend(img1)
+    $("#step24 div.text").append(text1);
     $("#step24 div.choice").html(img2 + text2)
     $("#step24 div.choice").click(function() {
       generate_p25()

@@ -116,8 +116,11 @@ footer {
 
 .container {
   display: block;
-  margin-right: 1em;
-  margin-left: 1em;
+  width: 100%;
+  padding: 0 1em;
+  margin: 0;
+  box-sizing: border-box;
+
   clear: both;
 }
 
@@ -198,7 +201,9 @@ a.next {
   position: fixed !important;
   bottom: 10%;
   left: 0;
-  padding: 1em 3em !important;
+  height: 3em !important;
+  line-height: 3em !important;
+  padding: 0 3em !important;
   box-sizing: border-box;
 }
 
@@ -236,23 +241,26 @@ form#info {
   z-index: 1;
 }
 
-form#info > img {
-  position: absolute;
-  width: 120%;
-  left: -10%;
-}
-
 form#info > div.container {
   position: absolute;
   margin-top: 20%;
+  overflow: visible;
+}
+
+form#info > div.container > p {
+  display: block;
+  margin: 0.5em 0;
+  padding: 0;
+  vertical-align: middle;
 }
 
 form#info input[type="text"] {
   display: block;
   height: 2em;
-  width: 5em;
+  width: 100%;
   padding: 0.5em 1em;
   background-color: rgba(255,255,255, 0.1);
+  border-radius: 0.5em;
   box-sizing: border-box;
   border: 1px solid #BDBDBD;
   outline: none;
@@ -286,6 +294,53 @@ form#info input[type="text"]::-webkit-input-placeholder {
   color: #333333;
 }
 
+form#info input[type="radio"] {
+  display: none;
+  position: absolute;
+}
+
+form#info p > label {
+  display: block;
+  float: left;
+  height: 2em;
+  width: 50%;
+  border-radius: 0.5em 0 0 0.5em;
+  border-width:  1px;
+  border-style: solid;
+  border-color: #BDBDBD;
+  background-color: transparent;
+  padding: 0 1em;
+  box-sizing: border-box;
+  white-space: normal;
+
+  -webkit-transition: 0.2s ease-in-out; /* Safari and Chrome */
+     -moz-transition: 0.2s ease-in-out; /* Firefox 4 */
+       -o-transition: 0.2s ease-in-out; /* Opera */
+          transition: 0.2s ease-in-out;
+  position: relative;
+  padding-right: 2em;
+  padding-left: 2em;
+
+  font-size: inherit;
+  font-family: inherit;
+  line-height: 2em;
+  text-align: center;
+  vertical-align: middle;
+}
+
+form#info p > label + label {
+  border-radius: 0 0.5em 0.5em 0;
+}
+
+form#info label.checked {
+  background-color: rgba(144,144,144, 0.5);
+  color: #EBEBEB;
+}
+
+.clear-both {
+  display: block;
+  clear: both;
+}
 
 div#step2 {
   /*background-color: #EBEBEB;*/
@@ -295,11 +350,12 @@ div.section a.btn {
   position: relative;
   display: block;
   width: 100%;
+  height: 2em;
   box-sizing: border-box;
   background-color: rgba(255,255,255, 0.7);
   color: #141414;
-  line-height: 1.5em;
-  padding: 0.3em 2em;
+  line-height: 2em;
+  padding: 0 2em;
   vertical-align: middle;
   text-align: center;
   font-size: 1em;

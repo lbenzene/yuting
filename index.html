@@ -33,13 +33,19 @@
             <!-- <img src="img/page1-1.png" class="timg"> -->
             <div class="container">
                 <p>选择你的性别、名字、文/理。</p>
-                <input type="text" name="name" placeholder="名字">
-                <input type="radio" name="major" value="文" checked><label>文</label>
-                <input type="radio" name="major" value="理"><label>理</label>
-                <br>
-                <input type="radio" name="gender" value="M" checked><label>男</label>
-                <input type="radio" name="gender" value="F"><label>女</label>
+                <p><input type="text" name="name" placeholder="名字"></p>
+                <p>
+                <label for="W" class="checked"><input type="radio" name="major" value="文" id="W" checked>文</label>
+                <label for="L"><input type="radio" name="major" value="理" id="L">理</label>
+                <span class="clear-both"></span>
+                </p>
+                <p>
+                <label for="M" class="checked"><input type="radio" name="gender" value="M" id="M" checked>男</label>
+                <label for="F"><input type="radio" name="gender" value="F" id="F">女</label>
+                <span class="clear-both"></span>
+                </p>
                 <a class="btn next" data-next="2">确定</a>
+
             </div>
         </form>
     </div>
@@ -61,7 +67,6 @@
     <div class="result" style="display: none;">
         <p>你的父亲寄来家书，斥你是小孩子心性，让你安心上学，不要担心家里的事。</p>
         <p>最终你还是随同学们一起去了</p>
-        <a class="btn next" data-next="3">继续</a>
     </div>
 </div>
 
@@ -78,7 +83,6 @@
     <div class="result" style="display: none;">
         <p>零零碎碎的战败消息传来，你的心时时为山外的家人所牵动。</p>
         <p><span>严</span>教授看你小小年纪心事重重，时常找你聊天，为你开导。在他的帮助下，你不仅在学业上面进步许多，心志也如山间的竹子一般拔节成长。</p>
-        <a class="btn next" data-next="4">继续</a>
     </div>
 </div>
 
@@ -90,7 +94,6 @@
     </div>
     <div class="text">        
         <p>你最怕碰到当天的《浙大日报》开售的时候，报童的第一声叫卖声还没喊完，人们就一哄而上争相购买传阅，街上人头攒动，饭都吃不安生。</p>
-        <a class="btn next" data-next="5">继续</a>
     </div>
 </div>
 
@@ -110,7 +113,6 @@
     </div>
     <div class="result" style="display: none;">
         <p>次日，金华遭到三架重型轰炸机狂炸，你在街上避难之时受了轻伤。</p>
-        <a class="btn next" data-next="6">继续</a>
     </div>
 </div>
 
@@ -128,7 +130,6 @@
     </div>
     <div class="result" style="display: none;">
         <p>在金华苦等两天后，你们终于等来了一辆敞篷的铁皮货车。</p>
-        <a class="btn next" data-next="7">继续</a>
     </div>
 </div>
 
@@ -148,7 +149,6 @@
         <p>1月7号，竺校长终于带来了前往下一站的火车。</p>
     </div>
     <div class="result">
-        <a class="btn next" data-next="8">继续</a>
     </div>
 </div>
 
@@ -168,7 +168,6 @@
         <a class="choice" data-ans="1">你的身体快熬不住了，想着“人有多大胆，复习拖多晚”沉沉睡去</a>
     </div>
     <div class="result">
-        <a class="btn next" data-next="9">继续</a>
     </div>
 </div>
 
@@ -186,7 +185,6 @@
     <div class="text" style="display: none;">
     </div>
     <div class="text" style="display: none;">
-        <a class="btn next" data-next="10">继续</a>    
     </div>
 </div>
 
@@ -198,7 +196,6 @@
     </div>
     <div class="text" style="display: none;">
         <p>这天吃中饭，隔壁桌的同学神秘兮兮地告诉你，今天马一浮先生讲《论语》，连竺校长都悄悄来听课，端端正正坐在第一排，小学生一样！</p>
-        <a class="btn next" data-next="11">继续</a>
     </div>
 </div>
 
@@ -215,7 +212,6 @@
         <a class="choice" data-ans="1">我从小不擅长跟熊孩子相处，还是算了吧</a>
     </div>
     <div class="result" style="display: none;">
-        <a class="btn next" data-next="12">继续</a>
     </div>
 </div>
 
@@ -246,7 +242,6 @@
         owo
     </div>
     <div class="result" style="display: none;">
-        <a class="btn next" data-next="14">继续</a>
     </div>
 </div>
 
@@ -284,7 +279,6 @@
         <a class="choice" data-ans="1">宣传组</a>
     </div>
     <div class="result" style="display: none;">
-        <a class="btn next" data-next="16">继续</a>
     </div>
 </div>
 
@@ -306,7 +300,6 @@
         <a class="choice" data-ans="1">“爹，我不想死呀！”</a>
     </div>
     <div class="result" style="display: none;">
-        <a class="btn next" data-next="17">继续</a>
     </div>
 </div>
 
@@ -322,7 +315,6 @@
         <a class="choice" data-ans="1">飞机那么远，蛇却这么近，溜了溜了</a>
     </div>
     <div class="result" style="display: none;">
-        <a class="btn next" data-next="18">继续</a>
     </div>
 </div>
 
@@ -339,7 +331,6 @@
     </div>
     <div class="text" style="display: none;">
         <p>数学系的苏步青教授嫌警报太多耽误上课，便在防空洞里讲起课来。</p>
-        <a class="btn next" data-next="19">继续</a>
     </div>
 </div>
 
@@ -355,7 +346,6 @@
         <a class="choice" data-ans="1">“欣赏艺术去！”（旁听先生的艺术欣赏课）</a>
     </div>
     <div class="result" style="display: none;">
-        <a class="btn next" data-next="20">继续</a>
     </div>
 </div>
 
@@ -372,7 +362,6 @@
         <a class="choice" data-ans="1">被<span>陈</span>教授知道了准要骂我，还是老实上课去吧</a>
     </div>
     <div class="result" style="display: none;">
-        <a class="btn next" data-next="21">继续</a>
     </div>
 </div>
 
@@ -387,7 +376,6 @@
         <a class="choice" data-ans="1">向南开赴战斗前线昆仑关</a>
     </div>
     <div class="result" style="display: none;">
-        <a class="btn next" data-next="22">继续</a>
     </div>
 </div>
 
@@ -398,7 +386,6 @@
     </div>
     <div class="text" style="display: none;">
         <p>除夕夜，你和七八个同学挤在同一间房里偷偷喝酒，微醺之中，大家凑在一起笑啊闹啊，还唱起了校歌，不知到了几更天才沉沉睡去。</p>
-        <a class="btn next" data-next="23">继续</a>
     </div>
 </div>
 
@@ -416,7 +403,6 @@
         <a class="choice" data-ans="1">2</a>
     </div>
     <div class="result" style="display: none;">
-        <a class="btn next" data-next="24">继续</a>
     </div>
 </div>
 
@@ -429,7 +415,6 @@
         <a class="choice" data-ans="1">2</a>
     </div>
     <div class="result" style="display: none;">
-        <a class="btn next" data-next="25">继续</a>
     </div>
 </div>
 
@@ -439,7 +424,6 @@
         <a class="choice" data-ans="1">2</a>
     </div>
     <div class="result" style="display: none;">
-        <a class="btn next" data-next="26">继续</a>
     </div>
 </div>
 
@@ -451,7 +435,6 @@
         <a class="choice" data-ans="1">眼下国家动荡，建设工作更加需要我的知识和才华</a>
     </div>
     <div class="result" style="display: none;">
-        <a class="btn next" data-next="27">继续</a>
     </div>
 </div>
 
