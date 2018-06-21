@@ -189,6 +189,10 @@ div.text {
   box-shadow: 0 0 2em 1em rgba(255,255,255, 0.7);
 */}
 
+div.zz > p + p {
+  display: none;
+}
+
 div.result {
   display: none;
   height: 100%;
@@ -389,7 +393,7 @@ div.choice a.choice {
   width: 100%;
   left: auto;
   right: auto;
-  margin-bottom: 0.5em;
+  margin-bottom: 1.5em;
   box-sizing: border-box;
   vertical-align: middle;
   text-align: center;
