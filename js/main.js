@@ -390,8 +390,9 @@ $("#step12 a.choice").click(function(e){
   var text = "";
   var temp = ""
   var img = ""
-  var img_zz = "<img src='img/page10p.jpg' class='bgimg'>"
+  var img_zz = ""
   if ($(this).data("ans") == "0") {
+    img_zz = "<img src='img/page10p.jpg' class='bgimg'>"
     img += "<img src='img/page10b.jpg' class='bgimg'>"
     img += "<img src='img/page10b_1.png' class='bgimg'>"
     text += "<p>赣江边上，蓝田正在唐凤图教授的指导下勘测水位。</p>"
@@ -749,7 +750,7 @@ role28 = 0;
 function generate_p28() {
   if ($user.result == 1) {
     text = "<p>8月16号，你在战场上收到湄潭（遵义）来信，得知同学们上个月刚举办过毕业典礼，如今已各奔东西：</p>"
-    text += "<p>紫云决定赴日本京都大学攻读史学科；</p>"
+    text += "<p>"+$user.fri+"决定赴日本京都大学攻读史学科；</p>"
     if ($user.choice[8] == 0) {
       text += "<p>蓝田留在湄潭继续学业；</p>"
     } else {
@@ -760,7 +761,7 @@ function generate_p28() {
     text = "<p>七月十六日，晴朗无风。全校师生在文庙图书馆行毕业典礼。</p>"
     text += "<P>本届毕业生六十一人，四年前入学时有三倍于此之数。</p>"
     text += "<p>你即将远赴重洋求学，</p>"
-    text += "<p>紫云也要赴日本京都大学攻读史学科；</p>"
+    text += "<p>"+$user.fri+"也要赴日本京都大学攻读史学科；</p>"
     if ($user.choice[8] == 0) {
       text += "<p>蓝田留在湄潭继续学业；</p>"
     } else {
@@ -771,7 +772,7 @@ function generate_p28() {
     text = "<p>七月十六日，晴朗无风。全校师生在文庙图书馆行毕业典礼。</p>"
     text += "<P>本届毕业生六十一人，四年前入学时有三倍于此之数。</p>"
     text += "<p>你即将开始下一阶段的学业，</p>"
-    text += "<p>紫云则要赴日本京都大学攻读史学科；</p>"
+    text += "<p>"+$user.fri+"则要赴日本京都大学攻读史学科；</p>"
     if ($user.choice[8] == 0) {
       text += "<p>蓝田和你一起留在湄潭；</p>"
     } else {
@@ -782,7 +783,7 @@ function generate_p28() {
     text = "<p>七月十六日，晴朗无风。全校师生在文庙图书馆行毕业典礼。</p>"
     text += "<P>本届毕业生六十一人，四年前入学时有三倍于此之数。</p>"
     text += "<p>你即将打点行囊回到硝烟中的东部，</p>"
-    text += "<p>紫云则要赴日本京都大学攻读史学科；</p>"
+    text += "<p>"+$user.fri+"则要赴日本京都大学攻读史学科；</p>"
     if ($user.choice[8] == 0) {
       text += "<p>蓝田留在湄潭继续学业；</p>"
     } else {
@@ -793,7 +794,7 @@ function generate_p28() {
     text = "<p>七月十六日，晴朗无风。全校师生在文庙图书馆行毕业典礼。</p>"
     text += "<P>本届毕业生六十一人，四年前入学时有三倍于此之数。</p>"
     text += "<p>你即将回到泰和见到久别的孩子们，</p>"
-    text += "<p>紫云则要赴日本京都大学攻读史学科；</p>"
+    text += "<p>"+$user.fri+"则要赴日本京都大学攻读史学科；</p>"
     if ($user.choice[8] == 0) {
       text += "<p>蓝田留在湄潭继续学业；</p>"
     } else {
@@ -1008,7 +1009,7 @@ function generate_p23() {
     result1 += "<p>从今以后的路，是两个人一起走啦。</p>"
     choice2 = "学业要紧，感情的事还是先放放"
     result2 = "<p>丹阳露出了尴尬而不失礼貌的微笑，并表示买卖不成仁义在，今后还是要做好朋友。</p>"
-    zzz($("#step23 div.zzz"))
+
   } else if ($user.gender == "M" && $user.major == "文") {
     text = "<p>好在你心仪的紫云也留在遵义，你选择：</p>"
     choice1 = "趁此机会，鼓起勇气表白"
@@ -1038,6 +1039,9 @@ function generate_p23() {
   $("#step23 div.choice").prepend(text)
   $("#step23 div.choice").children("a.choice:eq(0)").text(choice1)
   $("#step23 div.choice").children("a.choice:eq(1)").text(choice2)
+  if ($user.gender == "F" && ($user.choice[4] == 0 || $user.choice[11] == 0)) {
+    zzz($("#step23 div.zzz"))
+  }
 
   return {r1: result1, r2: result2}
 }
