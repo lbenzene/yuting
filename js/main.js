@@ -52,6 +52,21 @@ function zz(obj) {
   })
 }
 
+var zzzcount = 0;
+function zzz(obj) {
+  obj.click(function(e) {
+    e.stopPropagation();
+    $this = $(this);
+    if (zzzcount < $this.children("p").length - 1) {
+      $this.children("p:eq(" + ++zzzcount + ")").animate({opacity:'1'});    
+    } else {
+      $this.children("a").animate({opacity:'1'});
+      $this.unbind();
+      zzzcount = 0;
+    }
+  })
+}
+
 $("#step1").click(function() {
   oridinary($(this));
 })
@@ -124,7 +139,7 @@ $("#step2 a.choice").click(function(e) {
     $("#step3 img.bgimg").attr("src", "img/page2_2.jpg");
     next_act(3);
   } else {
-    $("#step3 img.bgimg").attr("src", "img/page2_4.jpg");
+    $("#step3 img.bgimg").attr("src", "img/page2_1.jpg");
     $("#step2 div.choice").fadeOut(function(){
       $("#step2 div.result").fadeIn().click(function() {
         next_act(3)
@@ -435,13 +450,9 @@ $("#step15 a.choice").click(function(e){
   e.stopPropagation();
   var DIV = $("#step15 div.result");
   var text = "";
-  img = "<img class='bgimg' src='img/page13_2.png'>"
-  if ($user.gender == "M") {
-    img += "<img class='bgimg' src='img/page13m.png'>"
-  } else if ($user.gender == "F") {
-    img += "<img class='bgimg' src='img/page13f.png'>"
-  }
-    if ($(this).data("ans") == "0") {
+  img = "<img class='bgimg' src='img/page13.jpg'>"
+  img += "<img class='bgimg' src='img/page13_2.png'>"
+  if ($(this).data("ans") == "0") {
     text = "<p>带着竺校长赠予的一张地图、一副指南针，你们用双脚丈量着泰和到宜山一千多里的路途。</p>"
   } else {
 
@@ -619,6 +630,7 @@ $("#step22").click(function() {
     });    
   } else {
     $this.unbind();
+    result23 = generate_p23();
     next_act(23);
   }
 })
@@ -780,8 +792,11 @@ function generate_p27() {
 function generate_p25() {
   if ($user.choice[16] == 1) {
     img = "<img class='bgimg' src='img/page23n.jpg'>"
-    img += "<img class='bgimg' src='img/page23n_1.png'>"
-    img += "<img class='bgimg' src='img/page23n_2.png'>"
+    if ($user.gender == "M") {
+      img += "<img class='bgimg' src='img/page23n_1.png'>"
+    } else {
+      img += "<img class='bgimg' src='img/page23n_2.png'>"
+    }
     text1 = "<p>自从"
     if ($user.gender == "F" && $user.choice[15] == 1) {
       text1 += "拒绝丹阳"
@@ -929,7 +944,7 @@ function generate_p24() {
 
 
 function generate_p23() {
-
+  text = ""
   if ($user.gender == "M" && $user.major == "理") {
     text = "<p>只是舍不得要留在遵义的紫云，思索再三，你决定：</p>"
     choice1 = "鼓起勇气向她表白"
@@ -938,7 +953,7 @@ function generate_p23() {
     choice2 = "自古表白多白表，还是日常从心吧"
     result2 = "<p>四月，东风来，柳絮飞，</p><p>你乘校车往湄潭去。</p>"
     result2 += "<p>小小的遵义城里留下了一声叹息。</p>"
-  } else if ($user.gender == "F") {
+  } else if ($user.gender == "F" && ($user.choice[4] == 0 || $user.choice[11] == 0)) {
     text = "<p>你很高兴能跟丹阳一起走，去往湄潭的路上，他突然对你说：</p>"
     text += "<p>“我最近手头有点紧，可以借你的手牵一下吗？”</p>"
     text += "<p>“借什么？”</p>"
@@ -949,6 +964,7 @@ function generate_p23() {
     result1 += "<p>从今以后的路，是两个人一起走啦。</p>"
     choice2 = "学业要紧，感情的事还是先放放"
     result2 = "<p>丹阳露出了尴尬而不失礼貌的微笑，并表示买卖不成仁义在，今后还是要做好朋友。</p>"
+    zzz($("#step23 div.zzz"))
   } else if ($user.gender == "M" && $user.major == "文") {
     text = "<p>好在你心仪的紫云也留在遵义，你选择：</p>"
     choice1 = "趁此机会，鼓起勇气表白"
@@ -958,6 +974,20 @@ function generate_p23() {
     result2 = "<p>有些人，一旦错过就不在。</p>"
     result2 += "<p>没过多久，你就听说紫云和你的好兄弟蓝田在一起了。</p>"
     result2 += "<p>你郁郁寡欢，从此埋头学术。</p>"
+  } else {
+    $("#step23 div.text").html("<p>春节还没过完，学校决定将理、农和师范学院的理科系迁往75公里外的湄潭县。</p>")
+    $("#step23 div.choice").html("<p>四月，草长莺飞，这是告别的季节，也是恋爱的季节。不知不觉间你已错过了几次命运的馈赠，终于还是错过了自己的感情线：</p><p>你的丹阳小哥哥，和别人谈恋爱了。</p>")
+    $("#step23 div.result").html("<p>自此以后，你的生活越发平淡无聊，每日两点一线的穿梭在教室与宿舍之间，不知不觉间，比你好看的人恋爱了，比你丑的人也恋爱了，只有你，一直形单影只。</p>")
+    $("#step23 div.choice").click(function() {
+      $(this).fadeOut(function(){
+        $("#step23 div.result").fadeIn()
+      })
+    })
+    $("#step23 div.result").click(function() {
+      generate_p24();
+      next_act(24);
+    })
+    return ;
   }
 
   $("#step23 div.choice").prepend(text)
@@ -971,6 +1001,9 @@ function change1() {
   if ($user.gender == "F") {  
     $user.fri = "丹阳"
     text3 = "<p>一起入学的男生军训时统统剃了光头，你常笑他们是寺里的“小和尚”。</p>"
+    img6  = "<img src='img/page5f1.png' class='bgimg'>";
+    img6 += "<img src='img/page5f2.png' class='bgimg'>";
+    img6 += "<img src='img/page5f3.png' class='bgimg'>";
 
     $("#step6 div.text").html("<p>在体育系主任舒鸿先生的带领下，你和一小部分同学溯水路到了常山。因为租不到车船，情急之下，你们选择徒步前往120里外的玉山。</p>")
     var choice = "";
@@ -999,6 +1032,7 @@ function change1() {
     })
     img11 = "<img src='img/page9f.png' class='bgimg'>";
     img13 = "<img src='img/page11f.jpg' class='bgimg'>";
+    img15 = "<img class='bgimg' src='img/page13f.png'>"
     img16 = "<img src='img/page14f.jpg' class='bgimg'>";
     text16 = "<p>你结束了一年的流亡，在城中的文庙安顿下来。一些教室和男生宿舍就在不远的标营。</p>"
     text18 = "<p>回到城中你才发现，男生住的标营已经全部被夷为平地。</p>"
@@ -1008,9 +1042,13 @@ function change1() {
 
   if ($user.gender == "M") {
     $user.fri = "紫云"
+    img6  = "<img src='img/page5m1.png' class='bgimg'>";
+    img6 += "<img src='img/page5m2.png' class='bgimg'>";
+    img6 += "<img src='img/page5m3.png' class='bgimg'>";
     text3 = "<p>只是军训时剃的光头还没长出头发来，让你颇有些苦恼。</p>"
     img11 = "<img src='img/page9m.png' class='bgimg'>";
     img13 = "<img src='img/page11m.jpg' class='bgimg'>";
+    img15 = "<img class='bgimg' src='img/page13m.png'>"
     img16 = "<img src='img/page14m.jpg' class='bgimg'>";
     text16 = "<p>你结束了一年的流亡，在城中的标营安顿下来。图书馆和女生宿舍就在不远的城中文庙。</p>"
     text18 = "<p>劫后余生，你哼着没唱完的校歌走在回校路上，却发现整个标营已经沦为一片废墟。</p>"
@@ -1019,13 +1057,15 @@ function change1() {
   }
   $("#step3 div.text").append(text3);
   text16 += "<p>此地深处内陆，居民多吃岩盐而患甲状腺肿大。有些一年级的新生看到满街的“大脖子”，竟吓得跑回了老家。</p>"
+  $("#step6 img").after(img6)
   $("#step16 div.text:eq(0)").append(text16);
   $("#step16 div.choice").prepend(img16);
   $("#step16 span").text($user.fri);
   $("#step11 div.text").append(img11);
   $("#step13").prepend(img13);
+  $("#step15 div.text:eq(0)").prepend(img15);
   $("#step18 div.text:eq(0)").prepend(text18);
-  $("#step20 div.choice").children("a.choice:eq(0) span").text(text20);
-  result23 = generate_p23()
-  console.log(result23);
+  $("#step20 div.choice").children("a.choice:eq(0)").children("span").text(text20);
+  $("#step20 div.choice").children("a.choice:eq(1)").children("span").text($user.tutor)
+
 }

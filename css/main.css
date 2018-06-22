@@ -193,6 +193,11 @@ div.zz > p + p {
   display: none;
 }
 
+div.zzz > p + p,
+div.zzz > a {
+  opacity: 0;
+}
+
 div.result {
   display: none;
   height: 100%;
