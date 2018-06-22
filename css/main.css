@@ -238,6 +238,7 @@ div.text {
   clear: both;
   height: 100%;
   padding: 20% 0;
+  box-sizing: border-box;
 /*  background-color: rgba(255,255,255, 0.7);
   box-shadow: 0 0 2em 1em rgba(255,255,255, 0.7);
 */}
@@ -475,6 +476,21 @@ div.choice > p > a.choice {
 div.choice a.choice.active {
   background-color: #333333;
   color: #EBEBEB;
+}
+
+div.star > p {
+  padding-left: 1em;
+  padding-right: 1em;
+  text-align: center !important;
+}
+
+div.star > p:last-child {
+  box-sizing: border-box;
+  margin: 0 !important;;
+  padding: 0;
+  width: 100%;
+  position: absolute;
+  bottom: 18%;
 }
 
 .fade-out {
