@@ -13,6 +13,37 @@ $user.result = 0;
 var NowAct = 1;
 var role4 = 0;
 var role5 = 0;
+var total = 30;
+
+function whoRU() {
+  if ($user.result == 5 || (($user.result == 2 || $user.result == 3) && $user.choice[16] == 0)) {
+    return "丰子恺"
+  } else if ($user.major == "文") {
+    if (($user.result == 2 || $user.result == 3) && $user.choice[16] == 1) {
+      return "马一浮"
+    } else if ($user.result == 4 && $user.choice[16] == 0) {
+      return "邵飘萍"
+    } else if ($user.result == 4 && $user.choice[16] == 1) {
+      return "竺可桢"
+    }    
+  } else if ($user.major == "理") {
+    if ($user.choice[16] == 0) {
+      if (($user.gender == "M" && $user.result == 1) || ($user.gender == "F" && $user.result == 2)) {
+        return "李政道"
+      } else {
+        return "王淦昌"
+      }
+    } else {
+      if (($user.gender == "M" && $user.result == 1) || ($user.gender == "F" && $user.choice[6] == 2)) {
+        return "束星北"
+      } else {
+        return "苏步青"
+      }
+    }
+  }
+
+  return "竺可桢"
+}
 
 $(document).ready(function(){
   // 定义所有下一页标签
@@ -665,7 +696,7 @@ $("#step26 a.choice").click(function(e){
   var DIV = $("#step26 div.result");
   var text = "";
   if ($(this).data("ans") == "0") {
-    if ($user.choice[3] == 0) {
+    if ($user.choice[4] == 0) {
       text = "<p>你很快通过了各项考核，跟随部队开赴前线</p>"
       $user.result = 1;
     } else {
@@ -690,8 +721,16 @@ $("#step26 a.choice").click(function(e){
   })
 })
 
+$("#step29").click(function() {
+  U = whoRU();
+  img = '<img src="whoRU/'+U+'.jpg" class="bgimg" alt="'+U+'">'
+  $("#step30").prepend(img);
+  $("#step30 > div.end-name > span").text($user.name);
+  next_act(30);
+})
+
 function next_act(n) {
-  n;
+  NowAct = n;
   // 滑动效果
   // $("#main-warpper").animate({top:'-' + (n-1) + '00%'}, "slow");
   // 
@@ -699,6 +738,9 @@ function next_act(n) {
   $("#step" + (n-1)).fadeOut(500, function(){
     $("#step" + n).fadeIn(900);
   })
+
+  $("#done").animate({'width': 100*NowAct/total+'%'});
+  $("#break").animate({'left': 100*NowAct/total+'%'})
 }
 
 role28 = 0;
@@ -983,6 +1025,7 @@ function generate_p23() {
         $("#step23 div.result").fadeIn()
       })
     })
+    $user.choice[16] = 1;
     $("#step23 div.result").click(function() {
       generate_p24();
       next_act(24);
