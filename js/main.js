@@ -87,21 +87,6 @@ function zz(obj) {
   })
 }
 
-var zzzcount = 0;
-function zzz(obj) {
-  obj.click(function(e) {
-    e.stopPropagation();
-    $this = $(this);
-    if (zzzcount < $this.children("p").length - 1) {
-      $this.children("p:eq(" + ++zzzcount + ")").animate({opacity:'1'});    
-    } else {
-      $this.children("a").animate({opacity:'1'});
-      $this.unbind();
-      zzzcount = 0;
-    }
-  })
-}
-
 $("#step2").click(function() {
   oridinary($(this));
 })
@@ -392,13 +377,13 @@ $("#step12 a.choice").click(function(e){
   var img = ""
   var img_zz = ""
   if ($(this).data("ans") == "0") {
-    img_zz = "<img src='img/page10p.jpg' class='bgimg'>"
     img += "<img src='img/page10b.jpg' class='bgimg'>"
     img += "<img src='img/page10b_1.png' class='bgimg'>"
     text += "<p>赣江边上，蓝田正在唐凤图教授的指导下勘测水位。</p>"
     text += "<p>你怕打扰他工作，在一旁默默地吃完了老乡送给他的杨梅。</p>";
     temp += "<p>看完蓝田回来不久，赣江边上多了一道十五里长堤。上田村人民感念你们，将其命名为“浙大防洪堤”。</p>"
   } else {
+    img_zz = "<img src='img/page10p.jpg' class='bgimg'>"
     img += "<img src='img/page10p.jpg' class='bgimg'>"
     img += "<img src='img/page10p_1.png' class='bgimg'>"
     text += "<p>跋涉大半天，你才到了碧峰所在的沙村镇。正好看到碧峰在田里带着难民们干活。</p>"
@@ -671,26 +656,6 @@ $("#step22").click(function() {
 
 $("#step23").click(function() {
   oridinary($(this));
-})
-
-$("#step23 a.choice").click(function(e){
-  get_choice($(this));
-  e.stopPropagation();
-  var DIV = $("#step23 div.result");
-  var text = "";
-  if ($(this).data("ans") == "0") {
-    text = result23.r1;
-  } else {
-    text = result23.r2;
-  }
-  DIV.prepend(text);
-  
-  $("#step23 div.choice").fadeOut(function(){
-    DIV.fadeIn().click(function() {
-      generate_p24();
-      next_act(24)
-    });
-  })
 })
 
 $("#step26 a.choice").click(function(e){
@@ -987,6 +952,40 @@ function generate_p24() {
   }
 }
 
+var zzzcount = 0;
+function zzz(obj, result23) {
+  obj.click(function(e) {
+    e.stopPropagation();
+    $this = $(this);
+    if (zzzcount < $this.children("p").length - 1) {
+      $this.children("p:eq(" + ++zzzcount + ")").animate({opacity:'1'});    
+    } else {
+      $this.children("a").animate({opacity:'1'}); 
+
+      $("#step23 a.choice").click(function(e){
+        get_choice($(this));
+        e.stopPropagation();
+        var DIV = $("#step23 div.result");
+        var text = "";
+        if ($(this).data("ans") == "0") {
+          text = result23.r1;
+        } else {
+          text = result23.r2;
+        }
+        DIV.prepend(text);
+        
+        $("#step23 div.choice").fadeOut(function(){
+          DIV.fadeIn().click(function() {
+            generate_p24();
+            next_act(24)
+          });
+        })
+      })
+      $this.unbind();
+      zzzcount = 0;
+    }
+  })
+}
 
 function generate_p23() {
   text = ""
@@ -1040,7 +1039,7 @@ function generate_p23() {
   $("#step23 div.choice").children("a.choice:eq(0)").text(choice1)
   $("#step23 div.choice").children("a.choice:eq(1)").text(choice2)
   if ($user.gender == "F" && ($user.choice[4] == 0 || $user.choice[11] == 0)) {
-    zzz($("#step23 div.zzz"))
+    zzz($("#step23 div.zzz"), {r1: result1, r2: result2})
   }
 
   return {r1: result1, r2: result2}
@@ -1050,9 +1049,7 @@ function change1() {
   if ($user.gender == "F") {  
     $user.fri = "丹阳"
     text3 = "<p>一起入学的男生军训时统统剃了光头，你常笑他们是寺里的“小和尚”。</p>"
-    img6  = "<img src='img/page5f1.png' class='bgimg'>";
-    img6 += "<img src='img/page5f2.png' class='bgimg'>";
-    img6 += "<img src='img/page5f3.png' class='bgimg'>";
+    img6  = "<img src='img/page5_1.jpg' class='bgimg'>";
 
     $("#step6 div.text").html('<img src="img/page5_1.jpg" class="bgimg">' + "<p>在体育系主任舒鸿先生的带领下，你和一小部分同学溯水路到了常山。因为租不到车船，情急之下，你们选择徒步前往120里外的玉山。</p>")
     var choice = "";

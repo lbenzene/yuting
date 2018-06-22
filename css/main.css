@@ -248,7 +248,7 @@ div.zz > p + p {
 }
 
 div.zzz > p + p,
-div.zzz > a {
+div.zzz > a.choice {
   opacity: 0;
 }
 
