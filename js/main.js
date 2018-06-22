@@ -167,10 +167,8 @@ $("#step2 a.choice").click(function(e) {
   e.stopPropagation()
   get_choice($(this));
   if ($(this).data("ans")) {
-    $("#step3 img.bgimg").attr("src", "img/page2_2.jpg");
     next_act(3);
   } else {
-    $("#step3 img.bgimg").attr("src", "img/page2_1.jpg");
     $("#step2 div.choice").fadeOut(function(){
       $("#step2 div.result").fadeIn().click(function() {
         next_act(3)
@@ -288,6 +286,7 @@ $("#step8 a.choice").click(function(e){
   if ($(this).data("ans") == "0") {
     img += '<img src="img/page7_3.png" class="bgimg">'
     img += '<img src="img/page7_4.png" class="bgimg">'
+    img += '<img src="img/page7_1.png" class="bgimg">'
     text = "在自修室里，你遇到了";
     if ($user.gender == "M") {
       text += "紫云";
@@ -391,6 +390,7 @@ $("#step12 a.choice").click(function(e){
   var text = "";
   var temp = ""
   var img = ""
+  var img_zz = "<img src='img/page10p.jpg' class='bgimg'>"
   if ($(this).data("ans") == "0") {
     img += "<img src='img/page10b.jpg' class='bgimg'>"
     img += "<img src='img/page10b_1.png' class='bgimg'>"
@@ -404,9 +404,11 @@ $("#step12 a.choice").click(function(e){
     text += "<p>犹记得去年新生报道时，同学们大都灰头土脸，唯有碧峰衬衣雪白挺括。看他这会儿面如闰土，你噗嗤一声笑了出来。</p>"
     temp += "<p>看完碧峰回来，几个月后，沙村示范垦殖场建成了，难民得有所依。回到学校里的碧峰，皮肤黝黑发亮，你们时常打趣他，哪还有当年富家少爷样子。</p>"
   }
-  DIV.prepend(text);
+  DIV.prepend(img_zz + text);
   $("#step12 div.choice").fadeOut(function(){
-    DIV.fadeIn();
+    DIV.fadeIn( function() {
+      $("#step12 > img").after(img_zz);
+    });
   })
   DIV.click(function() {
     DIV.unbind().fadeOut(function() {
@@ -1048,7 +1050,7 @@ function change1() {
     img6 += "<img src='img/page5f2.png' class='bgimg'>";
     img6 += "<img src='img/page5f3.png' class='bgimg'>";
 
-    $("#step6 div.text").html("<p>在体育系主任舒鸿先生的带领下，你和一小部分同学溯水路到了常山。因为租不到车船，情急之下，你们选择徒步前往120里外的玉山。</p>")
+    $("#step6 div.text").html('<img src="img/page4.jpg" class="bgimg">' + "<p>在体育系主任舒鸿先生的带领下，你和一小部分同学溯水路到了常山。因为租不到车船，情急之下，你们选择徒步前往120里外的玉山。</p>")
     var choice = "";
     choice += '<p>山路崎岖，眼看大家越走越丧，你忽然想起自己早晨在常山买的橘子。</p>'
     choice += '<p>你摸摸自己的肚子，又看了一眼身边一路帮你背了不少行李的生物系男生丹阳：</p>'
