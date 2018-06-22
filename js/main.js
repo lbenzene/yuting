@@ -52,6 +52,10 @@ $(document).ready(function(){
     next_act($(this).data("next"));
   })
 
+  $("#step1").click(function() {
+    oridinary($(this));
+  })
+
   zz($("div.zz"))
 
 })
@@ -97,10 +101,6 @@ function zzz(obj) {
     }
   })
 }
-
-$("#step1").click(function() {
-  oridinary($(this));
-})
 
 $("#step2").click(function() {
   oridinary($(this));
@@ -1054,7 +1054,7 @@ function change1() {
     img6 += "<img src='img/page5f2.png' class='bgimg'>";
     img6 += "<img src='img/page5f3.png' class='bgimg'>";
 
-    $("#step6 div.text").html('<img src="img/page4.jpg" class="bgimg">' + "<p>在体育系主任舒鸿先生的带领下，你和一小部分同学溯水路到了常山。因为租不到车船，情急之下，你们选择徒步前往120里外的玉山。</p>")
+    $("#step6 div.text").html('<img src="img/page5_1.jpg" class="bgimg">' + "<p>在体育系主任舒鸿先生的带领下，你和一小部分同学溯水路到了常山。因为租不到车船，情急之下，你们选择徒步前往120里外的玉山。</p>")
     var choice = "";
     choice += '<p>山路崎岖，眼看大家越走越丧，你忽然想起自己早晨在常山买的橘子。</p>'
     choice += '<p>你摸摸自己的肚子，又看了一眼身边一路帮你背了不少行李的生物系男生丹阳：</p>'
