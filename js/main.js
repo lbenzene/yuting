@@ -143,15 +143,17 @@ $("#step1 a.btn").click(function(e){
   next_act(2);
 })
 
-$("a.choice").click(function(){
-  $(this).siblings("a.choice").unbind();
-  $(this).unbind().addClass("active");
-})
+// $("a.choice").click(function(){
+//   $(this).siblings("a.choice").unbind();
+//   $(this).unbind().addClass("active");
+// })
 
 $("#step2 a.choice").click(function(e) {
+  $(this).unbind();
   e.stopPropagation()
   get_choice($(this));
   if ($(this).data("ans")) {
+    $("#step3 > img").after('<img src="img/page2_2.jpg" class="bgimg">')
     next_act(3);
   } else {
     $("#step2 div.choice").fadeOut(function(){
@@ -167,6 +169,7 @@ $("#step3").click(function() {
 })
 
 $("#step3 a.choice").click(function(e){
+  $(this).unbind();
   e.stopPropagation();
   get_choice($(this));
   $user.tutor = $(this).data("ans");
@@ -180,6 +183,7 @@ $("#step3 a.choice").click(function(e){
 })
 
 $("#step5 a.choice").click(function(e){
+  $(this).unbind();
   e.stopPropagation();
   get_choice($(this));
   var DIV = $("#step5 div.result");
@@ -203,6 +207,7 @@ $("#step5 a.choice").click(function(e){
 })
 
 $("#step6 a.choice").click(function(e){
+  $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
   var DIV = $("#step6 div.result");
@@ -263,6 +268,7 @@ $("#step8").click(function() {
 })
 
 $("#step8 a.choice").click(function(e){
+  $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
   var DIV = $("#step8 div.result");
@@ -336,6 +342,7 @@ $("#step11").click(function() {
 })
 
 $("#step11 a.choice").click(function(e){
+  $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
   var DIV = $("#step11 div.result");
@@ -369,6 +376,7 @@ $("#step12").click(function() {
 })
 
 $("#step12 a.choice").click(function(e){
+  $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
   var DIV = $("#step12 div.result");
@@ -426,6 +434,7 @@ $("#step13").click(function() {
   }
   $(this).children("div.choice").html(text);
   $("#step13 a.choice").click(function(e){
+    $(this).unbind();
     get_choice($(this));
     var DIV = $("#step13 div.result");
     var text = "";
@@ -465,6 +474,7 @@ $("#step15").click(function() {
   }
 })
 $("#step15 a.choice").click(function(e){
+  $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
   var DIV = $("#step15 div.result");
@@ -501,6 +511,7 @@ $("#step16").click(function() {
 })
 
 $("#step16 a.choice").click(function(e){
+  $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
   var DIV = $("#step16 div.result");
@@ -534,6 +545,7 @@ $("#step17").click(function() {
 })
 
 $("#step17 a.choice").click(function(e){
+  $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
   var DIV = $("#step17 div.result");
@@ -569,6 +581,7 @@ $("#step19").click(function() {
 })
 
 $("#step19 a.choice").click(function(e){
+  $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
   var DIV = $("#step19 div.result");
@@ -592,6 +605,7 @@ $("#step20").click(function() {
 })
 
 $("#step20 a.choice").click(function(e){
+  $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
   var DIV = $("#step20 div.result");
@@ -615,6 +629,7 @@ $("#step21").click(function() {
 })
 
 $("#step21 a.choice").click(function(e){
+  $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
   var DIV = $("#step21 div.result");
@@ -659,6 +674,7 @@ $("#step23").click(function() {
 })
 
 $("#step26 a.choice").click(function(e){
+  $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
   var DIV = $("#step26 div.result");
@@ -963,6 +979,7 @@ function zzz(obj, result23) {
       $this.children("a").animate({opacity:'1'}); 
 
       $("#step23 a.choice").click(function(e){
+        $(this).unbind();
         get_choice($(this));
         e.stopPropagation();
         var DIV = $("#step23 div.result");
@@ -1039,7 +1056,31 @@ function generate_p23() {
   $("#step23 div.choice").children("a.choice:eq(0)").text(choice1)
   $("#step23 div.choice").children("a.choice:eq(1)").text(choice2)
   if ($user.gender == "F" && ($user.choice[4] == 0 || $user.choice[11] == 0)) {
+    $("#step23 div.choice").addClass("zzz");
     zzz($("#step23 div.zzz"), {r1: result1, r2: result2})
+    console.log("F")
+  } else {
+    console.log("M")
+    $("#step23 a.choice").click(function(e){
+      get_choice($(this));
+      e.stopPropagation();
+      var DIV = $("#step23 div.result");
+      var text = "";
+      if ($(this).data("ans") == "0") {
+        text = result1;
+      } else {
+        text = result2;
+      }
+      DIV.prepend(text);
+      
+      $("#step23 div.choice").fadeOut(function(){
+        DIV.fadeIn().click(function() {
+          generate_p24();
+          next_act(24)
+        });
+      })
+    })
+
   }
 
   return {r1: result1, r2: result2}
@@ -1060,6 +1101,7 @@ function change1() {
     choice += '<a class="choice" data-ans="1">丹阳看着不是很饿，橘子还是我帮他吃吧</a>'
     $("#step6 div.choice").html(choice);
     $("#step6 a.choice").click(function(e){
+      $(this).unbind();
       get_choice($(this));
       e.stopPropagation();
       var DIV = $("#step6 div.result");
