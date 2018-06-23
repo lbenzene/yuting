@@ -511,8 +511,8 @@ div.star > p:last-child {
 .end-name {
   display: block;
   position: absolute;
-  width: 65%;
-  top: 10%;
+  width: 64%;
+  top: 9%;
   right: 0;
   padding: 0 0 0 0;
   color: rgba(255,255,255, 0.7);

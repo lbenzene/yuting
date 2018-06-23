@@ -134,6 +134,7 @@ $("#step1 label").click(function(){
 })
 
 $("#step1 a.btn").click(function(e){
+  $(this).unbind();
   e.stopPropagation();
   $user.name = $("input[name='name']").val();
   $user.major = $("input[name='major']:checked").val();
@@ -275,8 +276,7 @@ $("#step8 a.choice").click(function(e){
   var text = "";
   var img = "";
   if ($(this).data("ans") == "0") {
-    img += '<img src="img/page7_3.png" class="bgimg">'
-    img += '<img src="img/page7_4.png" class="bgimg">'
+    img += '<img src="img/page7_5.jpg" class="bgimg">'
     img += '<img src="img/page7_1.png" class="bgimg">'
     text = "在自修室里，你遇到了";
     if ($user.gender == "M") {
@@ -383,7 +383,6 @@ $("#step12 a.choice").click(function(e){
   var text = "";
   var temp = ""
   var img = ""
-  var img_zz = ""
   if ($(this).data("ans") == "0") {
     img += "<img src='img/page10b.jpg' class='bgimg'>"
     img += "<img src='img/page10b_1.png' class='bgimg'>"
@@ -391,22 +390,21 @@ $("#step12 a.choice").click(function(e){
     text += "<p>你怕打扰他工作，在一旁默默地吃完了老乡送给他的杨梅。</p>";
     temp += "<p>看完蓝田回来不久，赣江边上多了一道十五里长堤。上田村人民感念你们，将其命名为“浙大防洪堤”。</p>"
   } else {
-    img_zz = "<img src='img/page10p.jpg' class='bgimg'>"
     img += "<img src='img/page10p.jpg' class='bgimg'>"
     img += "<img src='img/page10p_1.png' class='bgimg'>"
     text += "<p>跋涉大半天，你才到了碧峰所在的沙村镇。正好看到碧峰在田里带着难民们干活。</p>"
     text += "<p>犹记得去年新生报道时，同学们大都灰头土脸，唯有碧峰衬衣雪白挺括。看他这会儿面如闰土，你噗嗤一声笑了出来。</p>"
     temp += "<p>看完碧峰回来，几个月后，沙村示范垦殖场建成了，难民得有所依。回到学校里的碧峰，皮肤黝黑发亮，你们时常打趣他，哪还有当年富家少爷样子。</p>"
   }
-  DIV.prepend(img_zz + text);
+  DIV.prepend(img + text);
   $("#step12 div.choice").fadeOut(function(){
     DIV.fadeIn( function() {
-      $("#step12 > img").after(img_zz);
+      $("#step12 > img").after(img);
     });
   })
   DIV.click(function() {
     DIV.unbind().fadeOut(function() {
-      DIV.html(img + temp).fadeIn().click(function() {
+      DIV.html(temp).fadeIn().click(function() {
         next_act(13)
       });
       $("#step12 a.next").click(function(){next_act($(this).data("next"));})
@@ -1006,6 +1004,9 @@ function zzz(obj, result23) {
 
 function generate_p23() {
   text = ""
+  imgm = '<img src="img/page21m.png" class="bgimg">'
+  imgf = '<img src="img/page21f.png" class="bgimg">'
+  imgd = '<img src="img/page21_doge.jpg" class="bgimg">'
   if ($user.gender == "M" && $user.major == "理") {
     text = "<p>只是舍不得要留在遵义的紫云，思索再三，你决定：</p>"
     choice1 = "鼓起勇气向她表白"
@@ -1016,7 +1017,7 @@ function generate_p23() {
     result2 += "<p>小小的遵义城里留下了一声叹息。</p>"
   } else if ($user.gender == "F" && ($user.choice[4] == 0 || $user.choice[11] == 0)) {
     text = "<p>你很高兴能跟丹阳一起走，去往湄潭的路上，他突然对你说：</p>"
-    text += "<p>“我最近手头有点紧，可以借你的手牵一下吗？”</p>"
+    text += "<p>“我最近手头有点紧，可以向你借点东西吗？”</p>"
     text += "<p>“借什么？”</p>"
     text += "<p>“借你的手牵一辈子”</p>"
     text += "<p>你选择：</p>"
@@ -1067,9 +1068,9 @@ function generate_p23() {
       var DIV = $("#step23 div.result");
       var text = "";
       if ($(this).data("ans") == "0") {
-        text = result1;
+        text = imgm + imgf + result1;
       } else {
-        text = result2;
+        text = imgd + result2;
       }
       DIV.prepend(text);
       
