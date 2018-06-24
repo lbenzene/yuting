@@ -209,8 +209,69 @@ div.next {
   padding: 0;
 }
 
-#step1 {
+@-webkit-keyframes step0 {
+  0%{
+    text-shadow: 0 0 0 rgba(255,255,255, 0.1)
+  }
+  50%{
+    text-shadow: 0 0 2em rgba(255,255,255, 0.9)
+  }
+  100%{
+    text-shadow: 0 0 0 rgba(255,255,255, 0.1)
+  }
+}
+
+@-webkit-keyframes shake {
+  0%{
+    transform: rotate(0deg);
+  }
+  5%{
+    transform: rotate(15deg);
+  }
+  15%{
+    transform: rotate(-15deg);
+  }
+  25%{
+    transform: rotate(15deg);
+  }
+  35%{
+    transform: rotate(-15deg);
+  }
+  45%{
+    transform: rotate(15deg);
+  }
+  55%{
+    transform: rotate(-15deg);
+  }
+  60%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(0deg);
+  }
+}
+
+#step0.active {
   display: block;
+}
+
+#step0 > div {
+  display: block;
+  position: absolute;
+  top: 60%;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+#step0 > div > p {
+  color: #EBEBEB;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+#step0.active > div > p {
+  animation: step0 2s infinite linear;
 }
 
 #step28 > div.text > p + p {
@@ -230,6 +291,10 @@ img.bgimg {
   width: 100%;
   background-color: transparent;
   overflow: hidden;
+}
+
+img.envelope {
+  animation: shake 1.5s linear 2s 3 normal;
 }
 
 div.text {

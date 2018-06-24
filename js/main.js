@@ -52,6 +52,10 @@ $(document).ready(function(){
     next_act($(this).data("next"));
   })
 
+  $("#step0").click(function() {
+    next_act(1);
+  })
+
   $("#step1").click(function() {
     oridinary($(this));
   })
@@ -717,8 +721,8 @@ function next_act(n) {
   // $("#main-warpper").animate({top:'-' + (n-1) + '00%'}, "slow");
   // 
   // 淡入淡出效果
-  $("#step" + (n-1)).fadeOut(500, function(){
-    $("#step" + n).fadeIn(900);
+  $("#step" + (n-1)).removeClass('active').fadeOut(500, function(){
+    $("#step" + n).addClass('active').fadeIn(900);
   })
 
   $("#done").animate({'width': 100*NowAct/total+'%'});
