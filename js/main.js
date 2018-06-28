@@ -1,10 +1,9 @@
-
 $user = new Object();
 $user.name = "";
 $user.major = "文";
 $user.gender = "M"; // 0男 1女
-$user.hp = 10;    // 生命值
-$user.good = 0;   // 
+$user.hp = 10; // 生命值
+$user.good = 0; // 
 $user.tutor = "";
 $user.fri = ""
 $user.choice = [];
@@ -25,7 +24,7 @@ function whoRU() {
       return "邵飘萍"
     } else if ($user.result == 4 && $user.choice[9] == 1) {
       return "竺可桢"
-    }    
+    }
   } else if ($user.major == "理") {
     if ($user.choice[9] == 0) {
       if (($user.gender == "M" && $user.result == 1) || ($user.gender == "F" && $user.result == 2)) {
@@ -45,9 +44,9 @@ function whoRU() {
   return "竺可桢"
 }
 
-$(document).ready(function(){
+$(document).ready(function() {
   // 定义所有下一页标签
-  $("a.next").click(function(e){
+  $("a.next").click(function(e) {
     e.stopPropagation();
     next_act($(this).data("next"));
   })
@@ -67,7 +66,7 @@ $(document).ready(function(){
 function oridinary(page) {
   $this = page;
   $this.unbind();
-  $this.find("div.text").fadeOut(function(){
+  $this.find("div.text").fadeOut(function() {
     $this.find("div.choice").fadeIn();
   })
 }
@@ -77,12 +76,13 @@ function get_choice(a) {
 }
 
 var zcount = 0
+
 function z(obj, nextpage) {
   obj.click(function(e) {
     e.stopPropagation();
     if (zcount < obj.children("div.text").length - 1) {
-      obj.children("div.text:eq(" + zcount + ")").fadeOut(function(){
-        obj.children("div.text:eq(" + (++zcount) + ")").fadeIn();    
+      obj.children("div.text:eq(" + zcount + ")").fadeOut(function() {
+        obj.children("div.text:eq(" + (++zcount) + ")").fadeIn();
       });
     } else {
       obj.unbind();
@@ -93,13 +93,14 @@ function z(obj, nextpage) {
 }
 
 var zhujuchuxiancount = 0
+
 function zz(obj) {
   obj.click(function(e) {
     e.stopPropagation();
     $this = $(this);
     if (zhujuchuxiancount < $this.children("p").length - 1) {
-      $this.children("p:eq(" + ++zhujuchuxiancount + ")").fadeIn();    
-    } 
+      $this.children("p:eq(" + ++zhujuchuxiancount + ")").fadeIn();
+    }
     if (zhujuchuxiancount == $this.children("p").length - 1) {
       $this.unbind();
       zhujuchuxiancount = 0;
@@ -115,16 +116,16 @@ $("#step3").click(function() {
   oridinary($(this));
 })
 
-$("#step3 a.choice").click(function(e){
+$("#step3 a.choice").click(function(e) {
   $(this).unbind();
   e.stopPropagation();
   get_choice($(this));
   $user.tutor = $(this).data("ans");
   $("#step3 span").text($user.tutor);
   $("#step20 div.choice").children("a.choice:eq(q) span").text($user.tutor);
-  $("#step3 div.choice").fadeOut(function(){
+  $("#step3 div.choice").fadeOut(function() {
     $("#step3 div.result").fadeIn().click(function() {
-        next_act(4)
+      next_act(4)
     });
   })
 })
@@ -135,15 +136,15 @@ z($("#step5"), 6)
 
 
 $("#step6").click(function() {
-    oridinary($(this));    
+  oridinary($(this));
 })
 
-$("#step1 label").click(function(){
+$("#step1 label").click(function() {
   $(this).addClass("checked");
   $(this).siblings("label").removeClass("checked");
 })
 
-$("#step1 a.btn").click(function(e){
+$("#step1 a.btn").click(function(e) {
   $(this).unbind();
   e.stopPropagation();
   $user.name = $("input[name='name']").val();
@@ -159,7 +160,7 @@ $("#step1 a.btn").click(function(e){
 //   $(this).unbind().addClass("active");
 // })
 
-$("#step6 a.choice").click(function(e){
+$("#step6 a.choice").click(function(e) {
   $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
@@ -171,7 +172,7 @@ $("#step6 a.choice").click(function(e){
     text = "你不由分说为紫云同学披上了冬衣。<br>一夜苦寒，第二天清早你便发起了高烧。"
   }
   DIV.prepend("<p>" + text + "</p>");
-  $("#step6 div.choice").fadeOut(function(){
+  $("#step6 div.choice").fadeOut(function() {
     DIV.fadeIn().click(function() {
       next_act(7)
     });
@@ -184,7 +185,7 @@ $("#step7").click(function() {
   if (role7 < 1) {
     $this.children("div.text:eq(" + role7 + ")").fadeOut(function() {
       $this.children("div.text:eq(" + ++role7 + ")").fadeIn();
-    });    
+    });
   } else {
     $this.unbind();
     var temp = "";
@@ -204,10 +205,10 @@ $("#step7").click(function() {
 })
 
 $("#step8").click(function() {
-oridinary($(this));
+  oridinary($(this));
 })
 
-$("#step8 a.choice").click(function(e){
+$("#step8 a.choice").click(function(e) {
   $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
@@ -225,10 +226,10 @@ $("#step8 a.choice").click(function(e){
     }
     text += "。半点豆样大小的黄灯光，照亮了你们沉思的脸庞。";
   } else {
-    text = "这次考试你完美避开了所有得分点，被"+$user.tutor+"教授狠狠骂了一顿。"
+    text = "这次考试你完美避开了所有得分点，被" + $user.tutor + "教授狠狠骂了一顿。"
   }
   DIV.prepend(img + "<p>" + text + "</p>");
-  $("#step8 div.choice").fadeOut(function(){
+  $("#step8 div.choice").fadeOut(function() {
     DIV.fadeIn().click(function() {
       next_act(9)
     });
@@ -261,7 +262,7 @@ $("#step9").click(function() {
   if (role9 < 2) {
     $this.children("div.text:eq(" + role9 + ")").fadeOut(function() {
       $this.children("div.text:eq(" + ++role9 + ")").fadeIn();
-    });    
+    });
   } else {
     // next_act(10);
     next_act(11)
@@ -282,7 +283,7 @@ $("#step9").click(function() {
 $("#step11").click(function() {
   $this = $(this);
   $this.unbind();
-  $this.find("div.text").fadeOut(function(){
+  $this.find("div.text").fadeOut(function() {
     $this.find("div.choice").fadeIn();
   })
 })
@@ -294,7 +295,7 @@ $("#step11 div.text").click(function(e) {
   $this.children("img.hide").fadeIn()
 })
 
-$("#step11 a.choice").click(function(e){
+$("#step11 a.choice").click(function(e) {
   $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
@@ -306,7 +307,7 @@ $("#step11 a.choice").click(function(e){
     text = "你的生活越发拮据。为了节省开销，你时常不吃早饭便去上晨课。"
   }
   DIV.prepend("<p>" + text + "</p>");
-  $("#step11 div.choice").fadeOut(function(){
+  $("#step11 div.choice").fadeOut(function() {
     DIV.fadeIn().click(function() {
       next_act(12)
     });
@@ -317,7 +318,7 @@ $("#step12").click(function() {
   oridinary($("#step12"))
 })
 
-$("#step12 a.choice").click(function(e){
+$("#step12 a.choice").click(function(e) {
   $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
@@ -339,8 +340,8 @@ $("#step12 a.choice").click(function(e){
     temp += "<p>回到学校里的碧峰，皮肤黝黑发亮，你们时常打趣他，哪还有当年入学时富家少爷的样子。</p>"
   }
   DIV.prepend(img + text);
-  $("#step12 div.choice").fadeOut(function(){
-    DIV.fadeIn( function() {
+  $("#step12 div.choice").fadeOut(function() {
+    DIV.fadeIn(function() {
       $("#step12 > img").after(img);
     });
   })
@@ -349,7 +350,9 @@ $("#step12 a.choice").click(function(e){
       DIV.html(temp).fadeIn().click(function() {
         next_act(13)
       });
-      $("#step12 a.next").click(function(){next_act($(this).data("next"));})
+      $("#step12 a.next").click(function() {
+        next_act($(this).data("next"));
+      })
     })
   })
 })
@@ -368,7 +371,7 @@ $("#step15").click(function() {
   if (role15 < 1) {
     $this.children("div.text:eq(" + role15 + ")").fadeOut(function() {
       $this.children("div.text:eq(" + ++role15 + ")").fadeIn();
-    });    
+    });
   } else {
     $this.unbind();
     $this.children("div.text:eq(" + role15 + ")").fadeOut(function() {
@@ -376,7 +379,7 @@ $("#step15").click(function() {
     })
   }
 })
-$("#step15 a.choice").click(function(e){
+$("#step15 a.choice").click(function(e) {
   $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
@@ -391,7 +394,7 @@ $("#step15 a.choice").click(function(e){
     text = "<p>四十多天、一千多里的行程中，你们抓住一切机会登台亮相，用一首首抗日歌曲，一场场抗日剧目，发出你们青年的“呐喊”。</p>"
   }
   DIV.prepend(img + text);
-  $("#step15 div.choice").fadeOut(function(){
+  $("#step15 div.choice").fadeOut(function() {
     DIV.fadeIn().click(function() {
       next_act(16)
     });
@@ -411,7 +414,7 @@ $("#step18").click(function() {
   if (role18 < 2) {
     $this.children("div.text:eq(" + role18 + ")").fadeOut(function() {
       $this.children("div.text:eq(" + ++role18 + ")").fadeIn();
-    });    
+    });
   } else {
     $this.unbind();
     next_act(19);
@@ -422,62 +425,62 @@ $("#step19").click(function() {
   oridinary($(this));
 })
 
-$("#step19 a.choice").click(function(e){
-  $(this).unbind();
-  get_choice($(this));
-  e.stopPropagation();
-  var DIV = $("#step19 div.result");
-  var text = "";
-  if ($(this).data("ans") == "0") {
-    if ($user.choice[6] == 0) {
-      text = "<p>歌咏队名额已满，你只能次次参观彩排。</p>"
+$("#step19 a.choice").click(function(e) {
+    $(this).unbind();
+    get_choice($(this));
+    e.stopPropagation();
+    var DIV = $("#step19 div.result");
+    var text = "";
+    if ($(this).data("ans") == "0") {
+      if ($user.choice[6] == 0) {
+        text = "<p>歌咏队名额已满，你只能次次参观彩排。</p>"
+      } else {
+        text = "<p>你在“呐喊”步行团的表现为大家所认可，顺利加入了歌咏队。</p>"
+      }
     } else {
-      text = "<p>你在“呐喊”步行团的表现为大家所认可，顺利加入了歌咏队。</p>"
+      if ($user.gender == "M") {
+        text = "<p>先生的课总是座无虚席，你常要提前两刻钟去占位置，不然就只能站在窗外听了。</p>"
+      } else {
+        text = "<p>先生的课总是座无虚席，好在有丹阳替你占位置，不然就只能站在窗外听了。</p>"
+      }
     }
-  } else {
-    if ($user.gender == "M") {
-      text = "<p>先生的课总是座无虚席，你常要提前两刻钟去占位置，不然就只能站在窗外听了。</p>"    
-    } else {
-      text = "<p>先生的课总是座无虚席，好在有丹阳替你占位置，不然就只能站在窗外听了。</p>"    
-    }
-  }
-  DIV.prepend(text);
-  $("#step19 div.choice").fadeOut(function(){
-    DIV.fadeIn().click(function() {
-      next_act(21)
-    });
+    DIV.prepend(text);
+    $("#step19 div.choice").fadeOut(function() {
+      DIV.fadeIn().click(function() {
+        next_act(21)
+      });
+    })
   })
-})
-/*
-$("#step20").click(function() {
-  oridinary($(this));
-})
+  /*
+  $("#step20").click(function() {
+    oridinary($(this));
+  })
 
-$("#step20 a.choice").click(function(e){
-  $(this).unbind();
-  get_choice($(this));
-  e.stopPropagation();
-  var DIV = $("#step20 div.result");
-  var text = "";
-  if ($(this).data("ans") == "0") {
-    text = "<p>你们就这样罢起课来，竺校长又好气又好笑，直骂你们不懂事。</p>"
-    text += "<p>背地里其实早就开始为下一次迁校作准备了。</p>"
-  } else {
-    text = "<p>没过两天你就听说，罢课的同学们被校长骂了。但同学们要求的迁校一事，却已经有了眉目。</p>"
-  }
-  DIV.prepend(text);
-  $("#step20 div.choice").fadeOut(function(){
-    DIV.fadeIn().click(function() {
-      next_act(21)
-    });
-  })
-})*/
+  $("#step20 a.choice").click(function(e){
+    $(this).unbind();
+    get_choice($(this));
+    e.stopPropagation();
+    var DIV = $("#step20 div.result");
+    var text = "";
+    if ($(this).data("ans") == "0") {
+      text = "<p>你们就这样罢起课来，竺校长又好气又好笑，直骂你们不懂事。</p>"
+      text += "<p>背地里其实早就开始为下一次迁校作准备了。</p>"
+    } else {
+      text = "<p>没过两天你就听说，罢课的同学们被校长骂了。但同学们要求的迁校一事，却已经有了眉目。</p>"
+    }
+    DIV.prepend(text);
+    $("#step20 div.choice").fadeOut(function(){
+      DIV.fadeIn().click(function() {
+        next_act(21)
+      });
+    })
+  })*/
 
 $("#step21").click(function() {
   oridinary($(this));
 })
 
-$("#step21 a.choice").click(function(e){
+$("#step21 a.choice").click(function(e) {
   $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
@@ -497,7 +500,7 @@ $("#step21 a.choice").click(function(e){
     text += "<p>战争激烈，77人的浙大“战地服务团”逐渐被打散，好在大家提前说好，之后各自去遵义再见。</p>"
   }
   DIV.prepend(img + text);
-  $("#step21 div.choice").fadeOut(function(){
+  $("#step21 div.choice").fadeOut(function() {
     DIV.fadeIn().click(function() {
       next_act(22)
     });
@@ -510,7 +513,7 @@ $("#step22").click(function() {
   if (role22 < 1) {
     $this.children("div.text:eq(" + role22 + ")").fadeOut(function() {
       $this.children("div.text:eq(" + ++role22 + ")").fadeIn();
-    });    
+    });
   } else {
     $this.unbind();
     result23 = generate_p23();
@@ -530,7 +533,7 @@ function generate_p23() {
     $("#step23 div.choice").html("<p>四月，草长莺飞，这是告别的季节，也是恋爱的季节。不知不觉间你已错过了几次命运的馈赠，终于还是错过了自己的感情线：</p><p>你的丹阳小哥哥，和别人谈恋爱了。</p>")
     $("#step23 div.result").html("<p>自此以后，你的生活越发平淡无聊，每日两点一线的穿梭在教室与宿舍之间，不知不觉间，比你好看的人恋爱了，比你丑的人也恋爱了，只有你，一直形单影只。</p>")
     $("#step23 div.choice").click(function() {
-      $(this).fadeOut(function(){
+      $(this).fadeOut(function() {
         $("#step23 div.result").fadeIn()
       })
     })
@@ -539,17 +542,17 @@ function generate_p23() {
       generate_p24();
       next_act(24);
     })
-    return ;
+    return;
   } else if ($user.gender == "M" && $user.major == "理") {
     text = "<p>只是舍不得要留在遵义的紫云，思索再三，你决定：</p>"
     choice1 = "鼓起勇气向她表白"
     if ($user.choice[2] == 1) {
       result1 = "<p>从你给她披上衣服那一刻起，紫云就喜欢上你了。</p>"
-      result1 += "<p>四月初，你乘校车前往湄潭，从此开始了漫长的异地恋。</p>" 
+      result1 += "<p>四月初，你乘校车前往湄潭，从此开始了漫长的异地恋。</p>"
     } else {
       love = 1
       result1 = "<p>紫云告诉你，她喜欢的是当年在金华给她披上衣服的蓝田。</p>"
-      result1 += "<p>白樱初绽，草长莺飞，你乘校车离开了这片伤心地。</p>" 
+      result1 += "<p>白樱初绽，草长莺飞，你乘校车离开了这片伤心地。</p>"
     }
     choice2 = "自古表白多白表，还是日常从心吧"
     result2 = "<p>四月，草长莺飞，</p><p>你乘校车往湄潭去。</p>"
@@ -570,11 +573,11 @@ function generate_p23() {
     choice1 = "趁此机会，鼓起勇气表白"
     if ($user.choice[2] == 1) {
       result1 = "<p>从你给她披上衣服那一刻起，紫云就喜欢上你了。</p>"
-      result1 += "<p>从此以后，遵义的苦日子里多了一点甜。</p>" 
+      result1 += "<p>从此以后，遵义的苦日子里多了一点甜。</p>"
     } else {
       love = 1
       result1 = "<p>紫云告诉你，她喜欢的是当年在金华给她披上衣服的蓝田。</p>"
-      result1 += "<p>没过多久，你就听说他们在一起了。</p>" 
+      result1 += "<p>没过多久，你就听说他们在一起了。</p>"
       result1 += "<p>你郁郁寡欢，从此埋头学术。</p>"
     }
     choice2 = "学业要紧，感情还是放在心里"
@@ -599,11 +602,14 @@ function generate_p23() {
   $("#step23 div.choice").children("a.choice:eq(1)").text(choice2)
   if ($user.gender == "F") {
     $("#step23 div.choice").addClass("zzz");
-    zzz($("#step23 div.zzz"), {r1: result1, r2: result2})
+    zzz($("#step23 div.zzz"), {
+      r1: result1,
+      r2: result2
+    })
     console.log("F")
   } else {
     console.log("M")
-    $("#step23 a.choice").click(function(e){
+    $("#step23 a.choice").click(function(e) {
       $user.choice[9] = $(this).data("ans") | love;
       e.stopPropagation();
       var DIV = $("#step23 div.result");
@@ -614,8 +620,8 @@ function generate_p23() {
         text = imgd + result2;
       }
       DIV.prepend(text);
-      
-      $("#step23 div.choice").fadeOut(function(){
+
+      $("#step23 div.choice").fadeOut(function() {
         DIV.fadeIn().click(function() {
           generate_p24();
           next_act(24)
@@ -623,13 +629,15 @@ function generate_p23() {
       })
     })
   }
-  return {r1: result1, r2: result2}
+  return {
+    r1: result1,
+    r2: result2
+  }
 }
 
 $("#step23").click(function() {
   oridinary($(this));
 })
-
 
 function generate_p24() {
   $("#step24").click(function() {
@@ -667,7 +675,7 @@ function generate_p24() {
     $("#step24 div.choice").prepend(text2)
     $("#step24 div.choice").children("a.choice:eq(0)").text(choice1)
     $("#step24 div.choice").children("a.choice:eq(1)").text(choice2)
-    $("#step24 a.choice").click(function(e){
+    $("#step24 a.choice").click(function(e) {
       get_choice($(this));
       e.stopPropagation();
       var DIV = $("#step24 div.result");
@@ -678,7 +686,7 @@ function generate_p24() {
         text = result2;
       }
       DIV.prepend(text);
-      $("#step24 div.choice").fadeOut(function(){
+      $("#step24 div.choice").fadeOut(function() {
         DIV.fadeIn().click(function() {
           generate_p25()
           next_act(25)
@@ -751,7 +759,7 @@ function generate_p25() {
     $("#step25 div.choice").prepend(text).show()
     $("#step25 div.choice").children("a.choice:eq(0)").text(choice1)
     $("#step25 div.choice").children("a.choice:eq(1)").text(choice2)
-    $("#step25 a.choice").click(function(e){
+    $("#step25 a.choice").click(function(e) {
       $(this).unbind();
       get_choice($(this));
       e.stopPropagation();
@@ -765,7 +773,7 @@ function generate_p25() {
         img_next += img2;
       }
       DIV.prepend(img_next + text);
-      $("#step25 div.choice").fadeOut(function(){
+      $("#step25 div.choice").fadeOut(function() {
         DIV.fadeIn().click(function() {
           if ($user.gender == "M") {
             next_act(26)
@@ -779,7 +787,7 @@ function generate_p25() {
   }
 }
 
-$("#step26 a.choice").click(function(e){
+$("#step26 a.choice").click(function(e) {
   $(this).unbind();
   get_choice($(this));
   e.stopPropagation();
@@ -794,10 +802,10 @@ $("#step26 a.choice").click(function(e){
       text += "<p>你只好安慰自己，养好身体了再为国效力。</p>"
     }
   } else {
-    text = "<p>你的选择得到了"+$user.tutor+"教授的肯定，他一向主张青年学生要用头脑报国，此举更加需要恒心与毅力。</p>"
+    text = "<p>你的选择得到了" + $user.tutor + "教授的肯定，他一向主张青年学生要用头脑报国，此举更加需要恒心与毅力。</p>"
   }
   DIV.prepend(text);
-  $("#step26 div.choice").fadeOut(function(){
+  $("#step26 div.choice").fadeOut(function() {
     DIV.fadeIn().click(function() {
       if ($user.result == 1) {
         generate_p28()
@@ -813,14 +821,14 @@ $("#step26 a.choice").click(function(e){
 function generate_p27() {
   text = "<p>四年的求学时光倏忽而过，1941年的夏天还是来了。</p>"
   text += "<p>曾以为毕业遥遥无期，转眼要各奔东西，你决定：</p>"
-  choice  = '<a class="choice" data-ans="0">出国攻读硕士学位</a>'
+  choice = '<a class="choice" data-ans="0">出国攻读硕士学位</a>'
   choice += '<a class="choice" data-ans="1">留在学校继续深造</a>'
   choice += '<a class="choice" data-ans="2">去上海找工作</a>'
   if ($user.choice[4] == 0) {
     choice += '<a class="choice" data-ans="3">回到澄江小学做一名乡村教师</a>'
   }
   $("#step27 div.choice").html(text + choice);
-  $("#step27 a.choice").click(function(e){
+  $("#step27 a.choice").click(function(e) {
     $(this).unbind();
     $user.result = $(this).data("ans") + 2;
     get_choice($(this));
@@ -831,38 +839,39 @@ function generate_p27() {
 }
 
 role28 = 0;
+
 function generate_p28() {
   if ($user.result == 1) {
     text = "<p>八月十六日，你在战场上收到湄潭（遵义）来信，得知同学们上个月刚举办过毕业典礼，如今已各奔东西：</p>"
-    text += "<p>"+$user.fri+"决定赴日本京都大学攻读史学科；</p>"
+    text += "<p>" + $user.fri + "决定赴日本京都大学攻读史学科；</p>"
     text += "<p>蓝田留在遵义继续学业；</p>"
     text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   } else if ($user.result == 2) {
     text = "<p>七月十三日，紫薇花开。全校师生在县党部行毕业典礼。</p>"
     text += "<P>本届毕业生共约一百七十人，女生十余人而已。</p>"
     text += "<p>你即将远赴重洋求学，</p>"
-    text += "<p>"+$user.fri+"也要赴日本京都大学攻读史学科；</p>"
+    text += "<p>" + $user.fri + "也要赴日本京都大学攻读史学科；</p>"
     text += "<p>蓝田留在遵义继续学业；</p>"
     text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   } else if ($user.result == 3) {
     text = "<p>七月十三日，紫薇花开。全校师生在县党部行毕业典礼。</p>"
     text += "<P>本届毕业生共约一百七十人，女生十余人而已。</p>"
     text += "<p>你即将开始下一阶段的学业，</p>"
-    text += "<p>"+$user.fri+"则要赴日本京都大学攻读史学科；</p>"
+    text += "<p>" + $user.fri + "则要赴日本京都大学攻读史学科；</p>"
     text += "<p>蓝田和你一起留在学校继续学业；</p>"
     text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   } else if ($user.result == 4) {
     text = "<p>七月十三日，紫薇花开。全校师生在县党部行毕业典礼。</p>"
     text += "<P>本届毕业生共约一百七十人，女生十余人而已。</p>"
     text += "<p>你即将打点行囊回到硝烟中的东部，</p>"
-    text += "<p>"+$user.fri+"则要赴日本京都大学攻读史学科；</p>"
+    text += "<p>" + $user.fri + "则要赴日本京都大学攻读史学科；</p>"
     text += "<p>蓝田留在遵义继续学业；</p>"
     text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   } else if ($user.result == 5) {
     text = "<p>七月十三日，紫薇花开。全校师生在县党部行毕业典礼。</p>"
     text += "<P>本届毕业生共约一百七十人，女生十余人而已。</p>"
     text += "<p>你即将回到泰和见到久别的孩子们，</p>"
-    text += "<p>"+$user.fri+"则要赴日本京都大学攻读史学科；</p>"
+    text += "<p>" + $user.fri + "则要赴日本京都大学攻读史学科；</p>"
     text += "<p>蓝田留在遵义继续学业；</p>"
     text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   }
@@ -870,7 +879,7 @@ function generate_p28() {
   $("#step28").click(function() {
     $this = $(this);
     if (role28 < $("#step28 div.text p").length - 1) {
-      $this.children("div.text").children("p:eq(" + ++role28 + ")").fadeIn();    
+      $this.children("div.text").children("p:eq(" + ++role28 + ")").fadeIn();
     } else {
       $this.unbind();
       next_act(29)
@@ -880,7 +889,7 @@ function generate_p28() {
 
 $("#step29").click(function() {
   U = whoRU();
-  img = '<img src="whoRU/'+U+'.jpg" class="bgimg" alt="'+U+'">'
+  img = '<img src="whoRU/' + U + '.jpg" class="bgimg" alt="' + U + '">'
   $("#step30").prepend(img);
   $("#step30 > div.end-name > span").text($user.name);
   next_act(30);
@@ -891,26 +900,35 @@ function next_act(n) {
   // $("#main-warpper").animate({top:'-' + (n-1) + '00%'}, "slow");
   // 
   // 淡入淡出效果
-  $("#step" + NowAct).removeClass('active').fadeOut(500, function(){
+  $("#step" + NowAct).removeClass('active').fadeOut(500, function() {
     $("#step" + n).addClass('active').fadeIn(900);
   })
   NowAct = n;
 
-  $("#done").animate({'width': 100*NowAct/total+'%'});
-  $("#break").animate({'left': 100*NowAct/total+'%'})
+  $("#done").animate({
+    'width': 100 * NowAct / total + '%'
+  });
+  $("#break").animate({
+    'left': 100 * NowAct / total + '%'
+  })
 }
 
 var zzzcount = 0;
+
 function zzz(obj, result23) {
   obj.click(function(e) {
     e.stopPropagation();
     $this = $(this);
     if (zzzcount < $this.children("p").length - 1) {
-      $this.children("p:eq(" + ++zzzcount + ")").animate({opacity:'1'});    
+      $this.children("p:eq(" + ++zzzcount + ")").animate({
+        opacity: '1'
+      });
     } else {
-      $this.children("a").animate({opacity:'1'}); 
+      $this.children("a").animate({
+        opacity: '1'
+      });
 
-      $("#step23 a.choice").click(function(e){
+      $("#step23 a.choice").click(function(e) {
         $(this).unbind();
         get_choice($(this));
         e.stopPropagation();
@@ -922,8 +940,8 @@ function zzz(obj, result23) {
           text = result23.r2;
         }
         DIV.prepend(text);
-        
-        $("#step23 div.choice").fadeOut(function(){
+
+        $("#step23 div.choice").fadeOut(function() {
           DIV.fadeIn().click(function() {
             generate_p24();
             next_act(24)
@@ -937,15 +955,15 @@ function zzz(obj, result23) {
 }
 
 function change1() {
-  if ($user.gender == "F") {  
+  if ($user.gender == "F") {
     $user.fri = "丹阳"
     img6 = '<img src="img/page5_1.jpg" class="bgimg">'
     text6 = "<p>在体育系主任舒鸿先生的带领下，你和一小部分同学溯水路到了常山。</p><p>因为租不到车船，情急之下，你们选择徒步前往120里外的玉山。</p>"
-    $("#step6").html( img6 + "<div class='text zz'>" + text6 + "</div>" )
-    .click(function(e){
-      $(this).unbind();
-      next_act(7)
-    })
+    $("#step6").html(img6 + "<div class='text zz'>" + text6 + "</div>")
+      .click(function(e) {
+        $(this).unbind();
+        next_act(7)
+      })
     zz($("#step6 div.zz"))
     img11 = "<img src='img/page9f.png' class='bgimg hide'>";
     img13 = "<img src='img/page11f.jpg' class='bgimg'>";
@@ -961,7 +979,7 @@ function change1() {
 
   if ($user.gender == "M") {
     $user.fri = "紫云"
-    img6  = "<img src='img/page5m1.png' class='bgimg'>";
+    img6 = "<img src='img/page5m1.png' class='bgimg'>";
     img6 += "<img src='img/page5m2.png' class='bgimg'>";
     img6 += "<img src='img/page5m3.png' class='bgimg'>";
     img11 = "<img src='img/page9m.png' class='bgimg hide'>";
@@ -971,7 +989,7 @@ function change1() {
     text16 = "<p>你结束了一年的流亡，在城中的标营安顿下来。图书馆和女生宿舍就在不远的城中文庙。</p>"
     text17 = "<p>你和丹阳跑得快，钻进一个小小的岩洞，躲在洞里直到轰炸结束。</p>"
     text18 = "<p>劫后余生，你哼着没唱完的校歌走在回校路上，却发现整个标营已经沦为一片废墟。</p>"
-    text18 += "<p>" + $user.tutor +"教授的夫人看你无处可去，收留你住在家中。</p>"
+    text18 += "<p>" + $user.tutor + "教授的夫人看你无处可去，收留你住在家中。</p>"
     text20 = "男孩"
   }
   text16 += "<p>此地深处内陆，居民多吃岩盐而患甲状腺肿大。有些一年级的新生看到满街的“大脖子”，竟吓得跑回了老家。</p>"
