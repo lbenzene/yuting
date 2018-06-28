@@ -97,6 +97,16 @@ textarea {
    Author's custom styles
    ========================================================================== */
 
+@font-face {
+ font-family: 'yuting';
+ src: url('fontName.eot');
+ src: local('yuting Regular'), 
+              local('yuting'), 
+              url('fontName.woff') format('woff'), 
+              url('font/yuting.ttf') format('truetype'), 
+              url('fontName.svg#fontName') format('svg');
+}  
+
 body, html {
   height: 100%;
   width: 100%;
@@ -209,7 +219,7 @@ div.next {
   padding: 0;
 }
 
-@-webkit-keyframes step0 {
+@keyframes step0 {
   0%{
     text-shadow: 0 0 0 rgba(255,255,255, 0.1)
   }
@@ -218,6 +228,18 @@ div.next {
   }
   100%{
     text-shadow: 0 0 0 rgba(255,255,255, 0.1)
+  }
+}
+
+@keyframes light {
+  0%{
+    box-shadow: 0 0 0 rgba(255,255,255, 0.1)
+  }
+  50%{
+    box-shadow: 0 0 5em rgba(255,255,255, 1)
+  }
+  100%{
+    box-shadow: 0 0 0 rgba(255,255,255, 0.1)
   }
 }
 
@@ -258,16 +280,46 @@ div.next {
 #step0 > div {
   display: block;
   position: absolute;
-  top: 60%;
+  top: 80%;
   left: 0;
   width: 100%;
   text-align: center;
 }
 
 #step0 > div > p {
+  margin-top: 40px;
   color: #EBEBEB;
-  font-size: inherit;
-  font-family: inherit;
+  font-size: 12px;
+  font-family: yuting;
+}
+
+#step0 > div > span {
+  position: absolute;
+  left: 50%;
+  margin-left: -10px;
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid #EBEBEB;
+  height: 20px;
+  width: 20px;
+  border-radius: 10px;
+}
+
+#step0 > div > span:before {
+  content: "";
+  position: absolute;
+  margin-top: -7px;
+  margin-left: -7px;
+  display: block;
+  box-sizing: border-box;
+  border: 2px solid #EBEBEB;
+  height: 30px;
+  width: 30px;
+  border-radius: 15px;
+}
+
+#step0.active > div > span {
+  animation: light 2s infinite linear;
 }
 
 #step0.active > div > p {
@@ -335,12 +387,17 @@ a.next {
   box-sizing: border-box;
 }
 
+div.textcenter > p {
+  text-align: center !important;
+}
+
 div.section div.choice > p,
 div.section div.result > p,
 div.section div.text > p,
 div.section div.next > p,
 div.section > p {
-  font-family:  KaiTi, KaiTi_GB2312, "Microsoft Yahei";
+  /*font-family: 'jdlibianjian12ea0cafd11d522', KaiTi, KaiTi_GB2312, "Microsoft Yahei";*/
+  font-family: yuting;
   color: #EBEBEB;
   font-weight: normal;
   text-shadow: 1px 1px 1px #000000;
