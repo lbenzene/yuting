@@ -116,7 +116,7 @@ body, html {
   height: 100%;
   width: 100%;
   overflow: hidden;
-  font-family: 楷体;
+  font-family: inherit;
   background-color: #141414;
 }
 
