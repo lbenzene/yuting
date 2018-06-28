@@ -269,18 +269,29 @@ $("#step9").click(function() {
   }
 })
 
-$("#step10").click(function() {
+// $("#step10").click(function() {
+//   $this = $(this);
+//   $this.unbind();
+//   $this.children("div.text:eq(0)").fadeOut(function() {
+//     $this.children("div.text:eq(1)").fadeIn().click(function() {
+//       next_act(11)
+//     });
+//   })
+// })
+
+$("#step11").click(function() {
   $this = $(this);
   $this.unbind();
-  $this.children("div.text:eq(0)").fadeOut(function() {
-    $this.children("div.text:eq(1)").fadeIn().click(function() {
-      next_act(11)
-    });
+  $this.find("div.text").fadeOut(function(){
+    $this.find("div.choice").fadeIn();
   })
 })
 
-$("#step11").click(function() {
-  oridinary($(this));
+$("#step11 div.text").click(function(e) {
+  e.stopPropagation();
+  $this = $(this);
+  $this.unbind();
+  $this.children("img.hide").fadeIn()
 })
 
 $("#step11 a.choice").click(function(e){
@@ -825,35 +836,35 @@ function generate_p28() {
     text = "<p>八月十六日，你在战场上收到湄潭（遵义）来信，得知同学们上个月刚举办过毕业典礼，如今已各奔东西：</p>"
     text += "<p>"+$user.fri+"决定赴日本京都大学攻读史学科；</p>"
     text += "<p>蓝田留在遵义继续学业；</p>"
-    text += "<p>碧峰则弃农从文，跑去了重庆，要去著名的《大公报》试试运气。</p>"
+    text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   } else if ($user.result == 2) {
     text = "<p>七月十三日，紫薇花开。全校师生在县党部行毕业典礼。</p>"
     text += "<P>本届毕业生共约一百七十人，女生十余人而已。</p>"
     text += "<p>你即将远赴重洋求学，</p>"
     text += "<p>"+$user.fri+"也要赴日本京都大学攻读史学科；</p>"
     text += "<p>蓝田留在遵义继续学业；</p>"
-    text += "<p>碧峰则弃农从文，跑去了重庆，要去著名的《大公报》试试运气。</p>"
+    text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   } else if ($user.result == 3) {
     text = "<p>七月十三日，紫薇花开。全校师生在县党部行毕业典礼。</p>"
     text += "<P>本届毕业生共约一百七十人，女生十余人而已。</p>"
     text += "<p>你即将开始下一阶段的学业，</p>"
     text += "<p>"+$user.fri+"则要赴日本京都大学攻读史学科；</p>"
     text += "<p>蓝田和你一起留在学校继续学业；</p>"
-    text += "<p>碧峰则弃农从文，跑去了重庆，要去著名的《大公报》试试运气。</p>"
+    text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   } else if ($user.result == 4) {
     text = "<p>七月十三日，紫薇花开。全校师生在县党部行毕业典礼。</p>"
     text += "<P>本届毕业生共约一百七十人，女生十余人而已。</p>"
     text += "<p>你即将打点行囊回到硝烟中的东部，</p>"
     text += "<p>"+$user.fri+"则要赴日本京都大学攻读史学科；</p>"
     text += "<p>蓝田留在遵义继续学业；</p>"
-    text += "<p>碧峰则弃农从文，跑去了重庆，要去著名的《大公报》试试运气。</p>"
+    text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   } else if ($user.result == 5) {
     text = "<p>七月十三日，紫薇花开。全校师生在县党部行毕业典礼。</p>"
     text += "<P>本届毕业生共约一百七十人，女生十余人而已。</p>"
     text += "<p>你即将回到泰和见到久别的孩子们，</p>"
     text += "<p>"+$user.fri+"则要赴日本京都大学攻读史学科；</p>"
     text += "<p>蓝田留在遵义继续学业；</p>"
-    text += "<p>碧峰则弃农从文，跑去了重庆，要去著名的《大公报》试试运气。</p>"
+    text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   }
   $("#step28 div.text").html(text);
   $("#step28").click(function() {
@@ -936,7 +947,7 @@ function change1() {
       next_act(7)
     })
     zz($("#step6 div.zz"))
-    img11 = "<img src='img/page9f.png' class='bgimg'>";
+    img11 = "<img src='img/page9f.png' class='bgimg hide'>";
     img13 = "<img src='img/page11f.jpg' class='bgimg'>";
     text13 = "<p>你自幼怕水，每次上游泳课总是找理由待在岸上。体育老师没说什么，只是默默地将签到台挪到了泳池中心</p>"
     text13 += "<p>你白眼升天，只能硬着头皮下水。没想到，20次“水中签到”之后，你竟然学会游泳了！</p>"
@@ -953,7 +964,7 @@ function change1() {
     img6  = "<img src='img/page5m1.png' class='bgimg'>";
     img6 += "<img src='img/page5m2.png' class='bgimg'>";
     img6 += "<img src='img/page5m3.png' class='bgimg'>";
-    img11 = "<img src='img/page9m.png' class='bgimg'>";
+    img11 = "<img src='img/page9m.png' class='bgimg hide'>";
     img13 = "<img src='img/page11m.jpg' class='bgimg'>";
     text13 = "<p>你自幼在水边长大，水性极好，每次上游泳课都成了你大展身手的机会。</p>"
     img15 = "<img class='bgimg' src='img/page13m.png'>"
