@@ -194,7 +194,6 @@ $("#step7").click(function() {
       temp += "<p>风从一个个弹孔中钻进脖子，你们冷的直打哆嗦，又怕染上风寒，不敢睡觉，只能一路高唱《松花江上》给自己鼓劲儿。</p>";
     } else if ($user.gender == "F") {
       temp = "<p>男生们展现绅士风度，主动把客车车厢让给了教授和女孩子们，你得以睡了安稳的一觉。</p>";
-      temp += "<p>第二天，看到许多男生的棉衣都被敞篷的铁车皮刮得破破烂烂，你心里极不是滋味，好在离家前跟母亲学过点女红，可以帮他们补补衣裳。</p>"
     }
     $this.find("div.text:eq(" + role7++ + ")").fadeOut(function() {
       $("#step7 div.result").prepend(temp).fadeIn().click(function() {
@@ -250,10 +249,10 @@ $("#step9").click(function() {
     } else if ($user.major == "文") {
       img = '<img src="img/page8.jpg" class="bgimg">'
       img += '<img src="img/page8_1.png" class="bgimg">'
-      temp1 = "<p>你每日黎明即起，在朝阳之下，漫山遍野，朗诵默读。</p>";
+      temp1 = "<p>你每日黎明即起，在朝阳之下，大原书院旁，朗诵默读。</p>";
       temp1 += "<p>黄昏时分，你时常呆在竺校长新栽的常青柏边，思考先生讲过的抗战与士风。</p>"
       temp1 += "<p>小树摇摇曳曳，世界静默的好像一个漫长的镜头。</p>";
-      temp2 += "<p>在如此纷乱急迫的国内大环境之中，你却在这里过着有条不紊的单纯的学术生活。</p>"
+      temp2 += "<p>在如此纷乱的国内大环境之中，你却在这里过着有条不紊的单纯的学术生活。</p>"
     }
     $("#step9 div.text:eq(0)").before(img);
     $("#step9 div.text:eq(1)").prepend(temp1);
@@ -614,7 +613,7 @@ function generate_p23() {
       e.stopPropagation();
       var DIV = $("#step23 div.result");
       var text = "";
-      if ($(this).data("ans") == 0) {
+      if ($user.choice[9] == 0) {
         text = imgm + imgf + result1;
       } else {
         text = imgd + result2;
@@ -842,7 +841,12 @@ role28 = 0;
 
 function generate_p28() {
   if ($user.result == 1) {
-    text = "<p>八月十六日，你在战场上收到湄潭（遵义）来信，得知同学们上个月刚举办过毕业典礼，如今已各奔东西：</p>"
+    if ($user.major == "理") {
+      temp = "湄潭"
+    } else {
+      temp = "遵义"
+    }
+    text = "<p>八月十六日，你在战场上收到"+temp+"来信，得知同学们上个月刚举办过毕业典礼，如今已各奔东西：</p>"
     text += "<p>" + $user.fri + "决定赴日本京都大学攻读史学科；</p>"
     text += "<p>蓝田留在遵义继续学业；</p>"
     text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
@@ -992,7 +996,6 @@ function change1() {
     text18 += "<p>" + $user.tutor + "教授的夫人看你无处可去，收留你住在家中。</p>"
     text20 = "男孩"
   }
-  text16 += "<p>此地深处内陆，居民多吃岩盐而患甲状腺肿大。有些一年级的新生看到满街的“大脖子”，竟吓得跑回了老家。</p>"
   $("#step11 div.text").append(img11);
   $("#step13").prepend(img13);
   $("#step13 div.text:eq(1)").html(text13);

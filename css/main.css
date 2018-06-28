@@ -82,6 +82,15 @@ textarea {
     resize: vertical;
 }
 
+/*
+ * Remove default input+ styles
+ */
+
+input, button, select, textarea {
+  outline: none;
+  -webkit-appearance: none;
+  border-radius: 0;
+}
 /* ==========================================================================
    Browser Upgrade Prompt
    ========================================================================== */
@@ -401,8 +410,8 @@ div.section div.result > p,
 div.section div.text > p,
 div.section div.next > p,
 div.section > p {
-  /*font-family: 'jdlibianjian12ea0cafd11d522', KaiTi, KaiTi_GB2312, "Microsoft Yahei";*/
-  font-family: yuting;
+  /*font-family: , KaiTi, KaiTi_GB2312, "Microsoft Yahei";*/
+  font-family: yuting, KaiTi, "Microsoft Yahei";
   color: #EBEBEB;
   font-weight: normal;
   text-shadow: 1px 1px 1px #000000;
@@ -644,10 +653,11 @@ div.star > p:last-child {
   padding: 0 0 0 0;
   color: rgba(255,255,255, 0.7);
   font-size: 11px;
-  font-family: inherit;
+  font-family: yuting, 'Microsoft Yahei';
 }
 
 .end-name > span {
+  font-family: 'Microsoft Yahei', 宋体;
   font-size: 12px;
 
 }
