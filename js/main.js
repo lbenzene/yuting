@@ -183,7 +183,7 @@ var role7 = 0;
 $("#step7").click(function() {
   $this = $(this);
   if (role7 < 1) {
-    $this.children("div.text:eq(" + role7 + ")").fadeOut(function() {
+    $this.children("div.text:eq(" + role7 + ")").stop().fadeOut(function() {
       $this.children("div.text:eq(" + ++role7 + ")").fadeIn();
     });
   } else {
@@ -195,7 +195,7 @@ $("#step7").click(function() {
     } else if ($user.gender == "F") {
       temp = "<p>男生们展现绅士风度，主动把客车车厢让给了教授和女孩子们，你得以睡了安稳的一觉。</p>";
     }
-    $this.find("div.text:eq(" + role7++ + ")").fadeOut(function() {
+    $this.find("div.text:eq(1)").stop().fadeOut(function() {
       $("#step7 div.result").prepend(temp).fadeIn().click(function() {
         next_act(8)
       });
@@ -238,26 +238,6 @@ $("#step8 a.choice").click(function(e) {
 var role9 = 0;
 $("#step9").click(function() {
   $this = $(this);
-  if (role9 == 0) {
-    var img = ""
-    var temp1 = temp2 = "";
-    if ($user.major == "理") {
-      img = '<img src="img/page8r.jpg" class="bgimg">'
-      temp1 = "<p>雨终日不止，山花谢了又开，你每日卯时即起，晨曦中埋头苦读，做实验，刷试管；</p>"
-      temp1 += "<p>又复三更灯火，月色下冥思静想，写报告，做分析。</p>";
-      temp2 = "<p>这样简朴单纯的生活，尽管清苦，却也十分充实。</p>";
-    } else if ($user.major == "文") {
-      img = '<img src="img/page8.jpg" class="bgimg">'
-      img += '<img src="img/page8_1.png" class="bgimg">'
-      temp1 = "<p>你每日黎明即起，在朝阳之下，大原书院旁，朗诵默读。</p>";
-      temp1 += "<p>黄昏时分，你时常呆在竺校长新栽的常青柏边，思考先生讲过的抗战与士风。</p>"
-      temp1 += "<p>小树摇摇曳曳，世界静默的好像一个漫长的镜头。</p>";
-      temp2 += "<p>在如此纷乱的国内大环境之中，你却在这里过着有条不紊的单纯的学术生活。</p>"
-    }
-    $("#step9 div.text:eq(0)").before(img);
-    $("#step9 div.text:eq(1)").prepend(temp1);
-    $("#step9 div.text:eq(2)").prepend(temp2);
-  }
   if (role9 < 2) {
     $this.children("div.text:eq(" + role9 + ")").fadeOut(function() {
       $this.children("div.text:eq(" + ++role9 + ")").fadeIn();
@@ -365,19 +345,25 @@ $("#step14").click(function() {
 })
 
 var role15 = 0;
-$("#step15").click(function() {
-  $this = $(this);
-  if (role15 < 1) {
-    $this.children("div.text:eq(" + role15 + ")").fadeOut(function() {
-      $this.children("div.text:eq(" + ++role15 + ")").fadeIn();
-    });
-  } else {
+function click15() {
+  $("#step15").click(function() {
+    $this = $(this);
     $this.unbind();
-    $this.children("div.text:eq(" + role15 + ")").fadeOut(function() {
-      $this.children("div.choice").fadeIn()
-    })
-  }
-})
+    if (role15 < 1) {
+      $this.children("div.text:eq(" + role15 + ")").fadeOut(function() {
+        $this.children("div.text:eq(" + ++role15 + ")").fadeIn();
+        click15();
+      });
+    } else {
+      $this.children("div.text:eq(" + role15 + ")").fadeOut(function() {
+        $this.children("div.choice").fadeIn()
+      })
+    }
+  })
+}
+
+click15()
+
 $("#step15 a.choice").click(function(e) {
   $(this).unbind();
   get_choice($(this));
@@ -411,7 +397,7 @@ var role18 = 0
 $("#step18").click(function() {
   $this = $(this);
   if (role18 < 2) {
-    $this.children("div.text:eq(" + role18 + ")").fadeOut(function() {
+    $this.children("div.text:eq(" + role18 + ")").stop().fadeOut(function() {
       $this.children("div.text:eq(" + ++role18 + ")").fadeIn();
     });
   } else {
@@ -510,7 +496,7 @@ var role22 = 0
 $("#step22").click(function() {
   $this = $(this);
   if (role22 < 1) {
-    $this.children("div.text:eq(" + role22 + ")").fadeOut(function() {
+    $this.children("div.text:eq(" + role22 + ")").stop().fadeOut(function() {
       $this.children("div.text:eq(" + ++role22 + ")").fadeIn();
     });
   } else {
@@ -522,7 +508,7 @@ $("#step22").click(function() {
 
 
 function generate_p23() {
-  text = ""
+  text = choose1 = choose2 = result1 = result2 =  ""
   imgm = '<img src="img/page21m.png" class="bgimg">'
   imgf = '<img src="img/page21f.png" class="bgimg">'
   imgd = '<img src="img/page21_doge.jpg" class="bgimg">'
@@ -909,10 +895,10 @@ function next_act(n) {
   })
   NowAct = n;
 
-  $("#done").animate({
+  $("#done").stop().animate({
     'width': 100 * NowAct / total + '%'
   });
-  $("#break").animate({
+  $("#break").stop().animate({
     'left': 100 * NowAct / total + '%'
   })
 }
@@ -996,6 +982,24 @@ function change1() {
     text18 += "<p>" + $user.tutor + "教授的夫人看你无处可去，收留你住在家中。</p>"
     text20 = "男孩"
   }
+
+  if ($user.major == "理") {
+    img9 = '<img src="img/page8r.jpg" class="bgimg">'
+    temp91 = "<p>雨终日不止，山花谢了又开，你每日卯时即起，晨曦中埋头苦读，做实验，刷试管；</p>"
+    temp91 += "<p>又复三更灯火，月色下冥思静想，写报告，做分析。</p>";
+    temp92 = "<p>这样简朴单纯的生活，尽管清苦，却也十分充实。</p>";
+  } else if ($user.major == "文") {
+    img9 = '<img src="img/page8.jpg" class="bgimg">'
+    img9 += '<img src="img/page8_1.png" class="bgimg">'
+    temp91 = "<p>你每日黎明即起，在朝阳之下，大原书院旁，朗诵默读。</p>";
+    temp91 += "<p>黄昏时分，你时常呆在竺校长新栽的常青柏边，思考先生讲过的抗战与士风。</p>"
+    temp91 += "<p>小树摇摇曳曳，世界静默的好像一个漫长的镜头。</p>";
+    temp92 = "<p>在如此纷乱的国内大环境之中，你却在这里过着有条不紊的单纯的学术生活。</p>"
+  }
+  $("#step9 div.text:eq(0)").before(img9);
+  $("#step9 div.text:eq(1)").prepend(temp91);
+  $("#step9 div.text:eq(2)").prepend(temp92);
+
   $("#step11 div.text").append(img11);
   $("#step13").prepend(img13);
   $("#step13 div.text:eq(1)").html(text13);
