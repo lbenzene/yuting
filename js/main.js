@@ -243,7 +243,7 @@ $("#step9").click(function() {
     var temp1 = temp2 = "";
     if ($user.major == "理") {
       img = '<img src="img/page8r.jpg" class="bgimg">'
-      temp1 = "<p>雨终日不止，山花谢了又开，每日卯时即起，晨曦中埋头苦读，做实验，刷试管；</p>"
+      temp1 = "<p>雨终日不止，山花谢了又开，你每日卯时即起，晨曦中埋头苦读，做实验，刷试管；</p>"
       temp1 += "<p>又复三更灯火，月色下冥思静想，写报告，做分析。</p>";
       temp2 = "<p>这样简朴单纯的生活，尽管清苦，却也十分充实。</p>";
     } else if ($user.major == "文") {
