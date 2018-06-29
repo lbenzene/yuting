@@ -885,8 +885,11 @@ $("#step29").click(function() {
   next_act(30);
 })
 
+ro30 = 0
 $("#step30").click(function() {
-  next_act(31);
+  ro30++;
+  if (ro30 > 10)
+    next_act(31);
 })
 
 function next_act(n) {
