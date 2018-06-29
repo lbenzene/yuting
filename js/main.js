@@ -329,9 +329,6 @@ $("#step12 a.choice").click(function(e) {
       DIV.html(temp).fadeIn().click(function() {
         next_act(13)
       });
-      $("#step12 a.next").click(function() {
-        next_act($(this).data("next"));
-      })
     })
   })
 })
@@ -601,8 +598,12 @@ function generate_p23() {
       e.stopPropagation();
       var DIV = $("#step23 div.result");
       var text = "";
-      if ($user.choice[9] == 0) {
-        text = imgm + imgf + result1;
+      if ($(this).data("ans") == 0) {
+        if (love == 0) {
+          text = imgm + imgf + result1;
+        } else {
+          text = imgd + result1;
+        }
       } else {
         text = imgd + result2;
       }
@@ -835,35 +836,35 @@ function generate_p28() {
       temp = "遵义"
     }
     text = "<p>八月十六日，你在战场上收到"+temp+"来信，得知同学们上个月刚举办过毕业典礼，如今已各奔东西：</p>"
-    text += "<p>" + $user.fri + "决定赴日本京都大学攻读史学科；</p>"
+    text += "<p>" + $user.fri + "决定赴日本京都大学攻读硕士；</p>"
     text += "<p>蓝田留在遵义继续学业；</p>"
     text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   } else if ($user.result == 2) {
     text = "<p>七月十三日，紫薇花开。全校师生在县党部行毕业典礼。</p>"
     text += "<P>本届毕业生共约一百七十人，女生十余人而已。</p>"
     text += "<p>你即将远赴重洋求学，</p>"
-    text += "<p>" + $user.fri + "也要赴日本京都大学攻读史学科；</p>"
+    text += "<p>" + $user.fri + "也要赴日本京都大学攻读硕士；</p>"
     text += "<p>蓝田留在遵义继续学业；</p>"
     text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   } else if ($user.result == 3) {
     text = "<p>七月十三日，紫薇花开。全校师生在县党部行毕业典礼。</p>"
     text += "<P>本届毕业生共约一百七十人，女生十余人而已。</p>"
     text += "<p>你即将开始下一阶段的学业，</p>"
-    text += "<p>" + $user.fri + "则要赴日本京都大学攻读史学科；</p>"
+    text += "<p>" + $user.fri + "则要赴日本京都大学攻读硕士；</p>"
     text += "<p>蓝田和你一起留在学校继续学业；</p>"
     text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   } else if ($user.result == 4) {
     text = "<p>七月十三日，紫薇花开。全校师生在县党部行毕业典礼。</p>"
     text += "<P>本届毕业生共约一百七十人，女生十余人而已。</p>"
     text += "<p>你即将打点行囊回到硝烟中的东部，</p>"
-    text += "<p>" + $user.fri + "则要赴日本京都大学攻读史学科；</p>"
+    text += "<p>" + $user.fri + "则要赴日本京都大学攻读硕士；</p>"
     text += "<p>蓝田留在遵义继续学业；</p>"
     text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   } else if ($user.result == 5) {
     text = "<p>七月十三日，紫薇花开。全校师生在县党部行毕业典礼。</p>"
     text += "<P>本届毕业生共约一百七十人，女生十余人而已。</p>"
     text += "<p>你即将回到泰和见到久别的孩子们，</p>"
-    text += "<p>" + $user.fri + "则要赴日本京都大学攻读史学科；</p>"
+    text += "<p>" + $user.fri + "则要赴日本京都大学攻读硕士；</p>"
     text += "<p>蓝田留在遵义继续学业；</p>"
     text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   }
