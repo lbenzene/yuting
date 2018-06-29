@@ -442,7 +442,6 @@ form#info {
 
 form#info > div.container {
   position: absolute;
-  margin-top: 20%;
   overflow: visible;
 }
 
@@ -451,6 +450,14 @@ form#info > div.container > p {
   margin: 0.5em 0;
   padding: 0;
   vertical-align: middle;
+  color: #EBEBEB;
+  font-weight: normal;
+  text-shadow: 1px 1px 1px #000000;
+  text-align: center;
+}
+
+form#info > div.container > p:nth-child(odd) {
+  margin-top: 2em;
 }
 
 form#info input[type="text"] {
@@ -458,39 +465,40 @@ form#info input[type="text"] {
   height: 2em;
   width: 100%;
   padding: 0.5em 1em;
-  background-color: rgba(255,255,255, 0.1);
-  border-radius: 0.5em;
-  box-sizing: border-box;
-  border: 1px solid #BDBDBD;
+  background-color: transparent;
+  background-repeat: no-repeat; 
+  background-position: center;
+  background-size: 45%;
+  background-image: url("../img/choose1.png");
+  text-align: center;  box-sizing: border-box;
+  border: none;
   outline: none;
   font-size: 1em;
-  color: #141414;
+  color: #FFFFFF;
   line-height: 1em;
   vertical-align: middle;
 }
 
 form#info input[type="text"]:focus {
-  border: 1px solid #999999;
-  -webkit-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
-     -moz-box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
-          box-shadow: inset 0 0 3px rgba(0,0,0,0.5);
+  opacity: 0.8;
+
 }
 
 form#info input[type="text"]:-moz-placeholder {
-  color: #333333;
+  color: #BBBBBB;
 }
 
 form#info input[type="text"]::-moz-placeholder {
-  color: #333333;
+  color: #BBBBBB;
   opacity: 1;
 }
 
 form#info input[type="text"]:-ms-input-placeholder {
-  color: #333333;
+  color: #BBBBBB;
 }
 
 form#info input[type="text"]::-webkit-input-placeholder {
-  color: #333333;
+  color: #BBBBBB;
 }
 
 form#info input[type="radio"] {
@@ -498,6 +506,47 @@ form#info input[type="radio"] {
   position: absolute;
 }
 
+form#info p > label {
+  display: block;
+  height: 2em;
+  width: 100%;
+  background-repeat: no-repeat; 
+  background-position: center;
+  background-size: 45%;
+  text-align: center;
+  font-family: inherit;
+  box-sizing: border-box;
+  padding-right: 2em;
+  padding-left: 2em;
+  margin-bottom: 0.5em;
+  line-height: 2em;
+  vertical-align: middle;
+}
+
+form#info p > label.style1 {
+  opacity: 0.7;
+  background-image: url("../img/choose2_after.png");
+}
+
+form#info p > label.style1.checked {
+  opacity: 1;
+  color: #FFFFFF;
+  background-image: url("../img/choose2.png");
+}
+
+form#info p > label.style2 {
+  opacity: 0.7;
+  background-image: url("../img/choose2_after.png");
+}
+
+form#info p > label.style2.checked {
+  opacity: 1;
+  color: #FFFFFF;
+  background-image: url("../img/choose2.png");
+}
+
+
+/*
 form#info p > label {
   display: block;
   float: left;
@@ -512,10 +561,7 @@ form#info p > label {
   box-sizing: border-box;
   white-space: normal;
 
-  -webkit-transition: 0.2s ease-in-out; /* Safari and Chrome */
-     -moz-transition: 0.2s ease-in-out; /* Firefox 4 */
-       -o-transition: 0.2s ease-in-out; /* Opera */
-          transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
   position: relative;
   padding-right: 2em;
   padding-left: 2em;
@@ -526,15 +572,7 @@ form#info p > label {
   text-align: center;
   vertical-align: middle;
 }
-
-form#info p > label + label {
-  border-radius: 0 0.5em 0.5em 0;
-}
-
-form#info label.checked {
-  background-color: rgba(144,144,144, 0.5);
-  color: #EBEBEB;
-}
+*/
 
 .clear-both {
   display: block;

@@ -508,7 +508,7 @@ $("#step22").click(function() {
 
 
 function generate_p23() {
-  text = choose1 = choose2 = result1 = result2 =  ""
+  text = choice1 = choice2 = result1 = result2 =  ""
   imgm = '<img src="img/page21m.png" class="bgimg">'
   imgf = '<img src="img/page21f.png" class="bgimg">'
   imgd = '<img src="img/page21_doge.jpg" class="bgimg">'
@@ -524,6 +524,7 @@ function generate_p23() {
     })
     $user.choice[9] = 1;
     $("#step23 div.result").click(function() {
+      $(this).unbind();
       generate_p24();
       next_act(24);
     })
@@ -569,7 +570,7 @@ function generate_p23() {
     result2 = "<p>有些人，一旦错过就不在。</p>"
     result2 += "<p>没过多久，你就听说紫云和你的好兄弟蓝田在一起了。</p>"
     result2 += "<p>你郁郁寡欢，从此埋头学术。</p>"
-  } else if ($user.gender == "F" && $user.major == "理") {
+  } else if ($user.gender == "F" && $user.major == "文") {
     text = "<p>四月初，你为丹阳送行，开玩笑叫他要时常买水果回来看你。丹阳支支吾吾，临上车前，突然对你说：</p>"
     text += "<p>“我最近手头有点紧，可以向你借点东西吗？”</p>"
     text += "<p>“借什么？”</p>"
@@ -595,6 +596,7 @@ function generate_p23() {
   } else {
     console.log("M")
     $("#step23 a.choice").click(function(e) {
+      $(this).unbind().siblings("a").unbind();
       $user.choice[9] = $(this).data("ans") | love;
       e.stopPropagation();
       var DIV = $("#step23 div.result");

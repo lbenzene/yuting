@@ -51,18 +51,18 @@
         <img src="img/page1.jpg" class="bgimg">
         <form id="info">
             <!-- <img src="img/page1-1.png" class="timg"> -->
-            <div class="container">
+            <div class="container textcenter">
                 <p>选择你的性别、名字、文/理。</p>
-                <p><input type="text" name="name" placeholder="名字"></p>
+                <p><input type="text" name="name" placeholder="名字" maxlength="6"></p>
+                <p>性别</p>
                 <p>
-                <label for="W" class="checked"><input type="radio" name="major" value="文" id="W" checked>文</label>
-                <label for="L"><input type="radio" name="major" value="理" id="L">理</label>
-                <span class="clear-both"></span>
+                <label for="M" class="style2 checked"><input type="radio" name="gender" value="M" id="M" checked>男</label>
+                <label for="F" class="style2 "><input type="radio" name="gender" value="F" id="F">女</label>
                 </p>
+                <p>文/理</p>
                 <p>
-                <label for="M" class="checked"><input type="radio" name="gender" value="M" id="M" checked>男</label>
-                <label for="F"><input type="radio" name="gender" value="F" id="F">女</label>
-                <span class="clear-both"></span>
+                <label for="W" class="style1 checked"><input type="radio" name="major" value="文" id="W" checked>文</label>
+                <label for="L" class="style1 "><input type="radio" name="major" value="理" id="L">理</label>
                 </p>
                 <a class="btn next" data-next="2">确定</a>
             </div>
