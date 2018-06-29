@@ -8,6 +8,7 @@ $user.tutor = "";
 $user.fri = ""
 $user.choice = [];
 $user.result = 0;
+$user.doge = 0;
 
 var NowAct = 0;
 var role4 = 0;
@@ -511,16 +512,11 @@ function generate_p23() {
   imgd = '<img src="img/page21_doge.jpg" class="bgimg">'
   love = 0;
   if ($user.choice[3] == 1 && $user.choice[7] == 0) {
-    $("#step23 div.text").html("<p>春节还没过完，学校决定将理、农和师范学院的理科系迁往75公里外的湄潭县。</p>")
-    $("#step23 div.choice").html("<p>四月，草长莺飞，这是告别的季节，也是恋爱的季节。不知不觉间你已错过了几次命运的馈赠，终于还是错过了自己的感情线：</p><p>你的丹阳小哥哥，和别人谈恋爱了。</p>")
-    $("#step23 div.result").html("<p>自此以后，你的生活越发平淡无聊，每日两点一线的穿梭在教室与宿舍之间，不知不觉间，比你好看的人恋爱了，比你丑的人也恋爱了，只有你，一直形单影只。</p>")
-    $("#step23 div.choice").click(function() {
-      $(this).fadeOut(function() {
-        $("#step23 div.result").fadeIn()
-      })
-    })
+    $user.doge = 1;
     $user.choice[9] = 1;
-    $("#step23 div.result").click(function() {
+    $("#step23 div.text").html("<p>春节还没过完，学校决定将理、农和师范学院的理科系迁往75公里外的湄潭县。</p>")
+    $("#step23 div.choice").html("<p>四月，草长莺飞，这是告别的季节，也是恋爱的季节。不知不觉间你已错过了几次命运的馈赠，终于还是错过了自己的感情线。</p>")
+    $("#step23 div.choice").click(function() {
       $(this).unbind();
       generate_p24();
       next_act(24);
@@ -676,6 +672,7 @@ function generate_p24() {
       DIV.prepend(text);
       $("#step24 div.choice").fadeOut(function() {
         DIV.fadeIn().click(function() {
+          $(this).unbind();
           generate_p25()
           next_act(25)
         });
@@ -850,21 +847,21 @@ function generate_p28() {
     text = "<p>七月十三日，紫薇花开。全校师生在县党部行毕业典礼。</p>"
     text += "<P>本届毕业生共约一百七十人，女生十余人而已。</p>"
     text += "<p>你即将开始下一阶段的学业，</p>"
-    text += "<p>" + $user.fri + "则要赴日本京都大学攻读硕士；</p>"
+    text += "<p>" + $user.fri + "也要赴日本京都大学攻读硕士；</p>"
     text += "<p>蓝田和你一起留在学校继续学业；</p>"
     text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   } else if ($user.result == 4) {
     text = "<p>七月十三日，紫薇花开。全校师生在县党部行毕业典礼。</p>"
     text += "<P>本届毕业生共约一百七十人，女生十余人而已。</p>"
     text += "<p>你即将打点行囊回到硝烟中的东部，</p>"
-    text += "<p>" + $user.fri + "则要赴日本京都大学攻读硕士；</p>"
+    text += "<p>" + $user.fri + "也要赴日本京都大学攻读硕士；</p>"
     text += "<p>蓝田留在遵义继续学业；</p>"
     text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   } else if ($user.result == 5) {
     text = "<p>七月十三日，紫薇花开。全校师生在县党部行毕业典礼。</p>"
     text += "<P>本届毕业生共约一百七十人，女生十余人而已。</p>"
     text += "<p>你即将回到泰和见到久别的孩子们，</p>"
-    text += "<p>" + $user.fri + "则要赴日本京都大学攻读硕士；</p>"
+    text += "<p>" + $user.fri + "也要赴日本京都大学攻读硕士；</p>"
     text += "<p>蓝田留在遵义继续学业；</p>"
     text += "<p>碧峰则弃农从文，跑去了重庆，想去著名的《大公报》试试运气。</p>"
   }
@@ -886,6 +883,10 @@ $("#step29").click(function() {
   $("#step30").prepend(img);
   $("#step30 > div.end-name > span").text($user.name);
   next_act(30);
+})
+
+$("#step30").click(function() {
+  next_act(31);
 })
 
 function next_act(n) {
